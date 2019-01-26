@@ -10,7 +10,7 @@
 custom_solver_bias = 0.0
 radius = 32.0
 
-[node name="Crab" type="KinematicBody2D"]
+[node name="Crab" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 0
@@ -55,8 +55,11 @@ editor_draw_drag_margin = false
 [node name="ShrimpOrigin" type="Sprite" parent="." index="3"]
 
 position = Vector2( 43.6422, -43.6197 )
+z_index = 1
+z_as_relative = false
 texture = ExtResource( 3 )
 script = ExtResource( 4 )
+_sections_unfolded = [ "Z Index" ]
 
 [node name="RandomizerTimer" type="Timer" parent="ShrimpOrigin" index="0"]
 

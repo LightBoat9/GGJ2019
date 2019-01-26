@@ -24,11 +24,13 @@ func  _ready():
 	pass
 
 func _draw():
-	pass
-	for pos in shrimp_ring_positions:
-		draw_circle(pos,shrimp_size/2,Color(0,0,1,0.3))
+	var tex = load("res://Actors/Shrimp/Sprite/tempCenter.png")
+	draw_texture(tex, get_local_mouse_position() - Vector2(tex.get_width() / 2, tex.get_height() / 2))
+	#for pos in shrimp_ring_positions:
+	#	draw_circle(pos,shrimp_size/2,Color(0,0,1,0.3))
 
 func _input(event):
+	update()
 	if event is InputEventMouseMotion:
 		update_position()
 	
@@ -44,16 +46,19 @@ func _input(event):
 		
 		update_ring_positions()
 		update_shrimp_targets()
-		update()
 
 func _process(delta):
 	update_position()
+	update()
 
 func update_position():
 	# Update shrimp origin position
 	var mouse_angle = get_global_mouse_position().angle_to_point(get_parent().global_position)
 	var vmouse_angle = Vector2(cos(mouse_angle), sin(mouse_angle))
-	position = vmouse_angle * min(get_parent().aoi_radius, get_parent().global_position.distance_to(get_global_mouse_position()))
+	if rand_timer.is_stopped():
+		position = vmouse_angle * min(get_parent().aoi_radius, get_parent().global_position.distance_to(get_global_mouse_position()))
+	else:
+		global_position = get_global_mouse_position()
 	update_shrimp_targets()
 
 func _physics_process(delta):

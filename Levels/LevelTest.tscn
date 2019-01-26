@@ -13,7 +13,7 @@ extents = Vector2( 32, 32 )
 [node name="Crab" parent="." index="0" instance=ExtResource( 1 )]
 
 position = Vector2( 322.895, 256.597 )
-_sections_unfolded = [ "collision" ]
+_sections_unfolded = [ "Collision", "collision" ]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="1"]
 

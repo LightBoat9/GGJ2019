@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 onready var shrimp_origin = $ShrimpOrigin
 
-var aoi_radius = 128
+var aoi_radius = 64
 
 var movespeed = 0.75
 var maxmovespeed = 5
