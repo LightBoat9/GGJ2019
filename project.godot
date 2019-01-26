@@ -11,6 +11,7 @@ config_version=3
 [application]
 
 config/name="GGJ2019"
+run/main_scene="res://Levels/LevelTest.tscn"
 config/icon="res://icon.png"
 
 [importer_defaults]
