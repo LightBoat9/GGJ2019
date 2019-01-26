@@ -1,8 +1,6 @@
 extends "res://Actors/Enemies/baseEnemy.gd"
 
 func _ready():
-	print(self.is_in_group("Enemies"))
-	
 	._ready()
 
 func _physics_process(delta):
