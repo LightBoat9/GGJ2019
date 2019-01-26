@@ -36,6 +36,9 @@ func velocity_to_target():
 	var moveVect = local_target.normalized()
 	
 	var final = velocity + moveVect * acceleration
-	final = final.clamped(local_target.distance_to(Vector2()))
 	
-	return final
+	var distanceMag = local_target.distance_to(Vector2())
+	var projection = 0 if (distanceMag == 0) else final.dot(local_target)/distanceMag
+	var finalClamp = min(projection,distanceMag)
+	
+	return final.clamped(0 if (finalClamp < 0.01) else finalClamp)
