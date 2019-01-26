@@ -14,6 +14,10 @@ config/name="GGJ2019"
 run/main_scene="res://Levels/LevelTest.tscn"
 config/icon="res://icon.png"
 
+[layer_names]
+
+2d_physics/layer_1="It's Walls"
+
 [rendering]
 
 environment/default_environment="res://default_env.tres"

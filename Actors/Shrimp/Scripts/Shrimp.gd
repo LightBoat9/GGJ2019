@@ -21,7 +21,7 @@ func _physics_process(delta):
 	
 	rotation += lerp(minSpin, maxSpin, velocityMag/maxSpeed)
 	
-	move_and_collide(velocity)
+	move_and_slide(velocity/delta)
 	pass
 
 func assign_target(var targ):
