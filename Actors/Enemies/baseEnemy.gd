@@ -20,24 +20,22 @@ var shrimpValue = 1
 enum States {basic, dead}
 
 func _ready():
-	mySprite = get_node("Sprite")
-	
+	#public relations
+	add_to_group("Enemies")
 	state = States.basic
 	health = maxHealth
-
-func _process(delta):
-	if (Input.is_action_just_pressed("ui_accept")):
-		_takeDamage(1)
-
-func _updateGraphics():
-	var newTex = null
 	
-	if (state == States.dead):
-		print("Switching to Dead Sprite")
-		newTex = tex_dead
-	
-	if (newTex != null):
-		mySprite.texture = newTex
+	#graphics
+	mySprite = get_node("Sprite")
+	_loadTextures()
+
+#general function to call when a shrimp interacts with this enemy
+func _shrimpInteract(var shrimpPower):
+	if (state != States.dead):
+		_takeDamage(shrimpPower)
+		return 0
+	else:
+		return _consume()
 
 #inflicts damage to this enemy
 func _takeDamage(var damage):
@@ -54,6 +52,21 @@ func _takeDamage(var damage):
 
 #deletes dead enemy and returns number of shrimp to spawn
 func _consume():
+	queue_free()
+	return shrimpValue
+
+#call when notable changes occur (mainly state changes)
+func _updateGraphics():
+	var newTex = null
+	
 	if (state == States.dead):
-		queue_free()
-		return shrimpValue
+		print("Switching to Dead Sprite")
+		newTex = tex_dead
+	
+	if (newTex != null):
+		mySprite.texture = newTex
+
+#override this to change what textures get loaded and where, etc.
+func _loadTextures():
+	tex_idle = load("res://Actors/Enemies/debugEnemy.png")
+	tex_dead = load("res://Actors/Enemies/debugEnemy_dead.png")
