@@ -1,4 +1,4 @@
 extends KinematicBody2D
 
-func _process(delta):
+func _physics_process(delta):
 	rotation += 0.05

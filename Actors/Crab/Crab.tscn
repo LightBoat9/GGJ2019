@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Actors/Crab/Scripts/Crab.gd" type="Script" id=1]
 [ext_resource path="res://Actors/Crab/Sprites/temp.png" type="Texture" id=2]
 [ext_resource path="res://Actors/Shrimp/Sprite/tempCenter.png" type="Texture" id=3]
+[ext_resource path="res://Actors/Crab/Scripts/ShrimpOrigin.gd" type="Script" id=4]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -54,5 +55,6 @@ editor_draw_drag_margin = false
 
 position = Vector2( 43.6422, -43.6197 )
 texture = ExtResource( 3 )
+script = ExtResource( 4 )
 
 
