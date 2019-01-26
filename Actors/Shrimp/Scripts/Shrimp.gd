@@ -4,7 +4,7 @@ var target_position = null
 onready var velocity = Vector2()
 
 var acceleration = 2
-var maxSpeed = 5
+var maxSpeed = 8
 var minSpin = 0.05
 var maxSpin = 0.25
 

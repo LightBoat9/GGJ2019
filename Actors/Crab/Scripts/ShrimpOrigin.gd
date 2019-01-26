@@ -15,6 +15,9 @@ var ringCapacity = []
 var totalRingCapacity = 0
 var shrimp_ring_positions = [] #target positions relative to cursor
 
+#randomizer
+onready var rand_timer = $RandomizerTimer
+
 onready var  TopLevel = get_node('/root').get_child(get_node('/root').get_child_count() - 1)
 
 func  _ready():
@@ -30,7 +33,15 @@ func _input(event):
 		update_position()
 	
 	if event is InputEventMouseButton:
-		add_shrimp()
+		if (event.button_index == BUTTON_LEFT):
+			add_shrimp()
+		elif (event.button_index == BUTTON_RIGHT):
+			if (event.pressed):
+				randomize_shrimp()
+				rand_timer.start()
+			elif (!event.pressed):
+				rand_timer.stop()
+		
 		update_ring_positions()
 		update_shrimp_targets()
 		update()
@@ -42,11 +53,11 @@ func update_position():
 	# Update shrimp origin position
 	var mouse_angle = get_global_mouse_position().angle_to_point(get_parent().global_position)
 	var vmouse_angle = Vector2(cos(mouse_angle), sin(mouse_angle))
-	position = vmouse_angle * min(64, get_parent().global_position.distance_to(get_global_mouse_position()))
+	position = vmouse_angle * min(get_parent().aoi_radius, get_parent().global_position.distance_to(get_global_mouse_position()))
 	update_shrimp_targets()
 
 func _physics_process(delta):
-	move_shrimp()
+	pass
 
 func add_shrimp():
 	if (shrimp.size()>=max_shrimp):
@@ -60,6 +71,18 @@ func add_shrimp():
 	
 	if (shrimp.size()>=totalRingCapacity):
 		append_ring_capacity()
+
+func randomize_shrimp():
+	var doubleShrimp = shrimp.duplicate()
+	shrimp.clear()
+	
+	while !doubleShrimp.empty():
+		var randIndex = randi() % doubleShrimp.size()
+		var thisShrimp = doubleShrimp[randIndex]
+		doubleShrimp.remove(randIndex)
+		
+		shrimp.push_back(thisShrimp)
+	
 
 #assigns target positions to shrimp based on their indexes
 func update_shrimp_targets():
@@ -105,7 +128,6 @@ func calculate_ring_capacity(var ringIndex):
 	
 	return (ringCircumference / shrimp_size)
 
-func move_shrimp():
-	for sh in shrimp:
-		# Loops through all shrimp
-		# Make em move :) i cant
+func _on_RandomizerTimer_timeout():
+	
+	pass # replace with function body

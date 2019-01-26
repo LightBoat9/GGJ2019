@@ -57,4 +57,13 @@ position = Vector2( 43.6422, -43.6197 )
 texture = ExtResource( 3 )
 script = ExtResource( 4 )
 
+[node name="RandomizerTimer" type="Timer" parent="ShrimpOrigin" index="0"]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
+[connection signal="timeout" from="ShrimpOrigin/RandomizerTimer" to="ShrimpOrigin" method="randomize_shrimp"]
+
 
