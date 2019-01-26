@@ -10,14 +10,13 @@ func _draw():
 	draw_circle(Vector2(), 64, Color(0, 0, 0, 0.3))
 	
 func _physics_process(delta):
-	handle_movement()
+	handle_movement(delta)
 	
-func handle_movement():
+func handle_movement(delta):
 	var h_in = int(Input.is_key_pressed(KEY_D)) - int(Input.is_key_pressed(KEY_A))
 	var v_in = int(Input.is_key_pressed(KEY_S)) - int(Input.is_key_pressed(KEY_W))
 	
 	if h_in != 0:
-		print('test')
 		velocity.x += h_in * movespeed
 	else:
 		velocity.x -= sign(velocity.x) * movespeed
@@ -33,4 +32,5 @@ func handle_movement():
 		
 	velocity = velocity.clamped(maxmovespeed)
 	
-	move_and_collide(velocity)
+	var temp = position.x
+	move_and_slide(velocity / delta)
