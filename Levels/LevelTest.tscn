@@ -1,11 +1,18 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Actors/Crab/Crab.tscn" type="PackedScene" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
 
 [node name="LevelTest" type="Node2D" index="0"]
 
 [node name="Crab" parent="." index="0" instance=ExtResource( 1 )]
 
 position = Vector2( 322.895, 256.597 )
+_sections_unfolded = [ "collision" ]
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+
+position = Vector2( 550.951, 248.948 )
+texture = ExtResource( 2 )
 
 
