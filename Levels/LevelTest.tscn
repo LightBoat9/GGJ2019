@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Actors/Crab/Crab.tscn" type="PackedScene" id=1]
 
-[node name="LevelTest" type="Node2D"]
+[node name="LevelTest" type="Node2D" index="0"]
 
 [node name="Crab" parent="." index="0" instance=ExtResource( 1 )]
 
