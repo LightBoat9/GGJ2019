@@ -5,9 +5,9 @@ func _ready():
 	
 	._ready()
 
-func _process(delta):
+func _physics_process(delta):
 	if (Input.is_action_just_pressed("ui_accept")):
-		_takeDamage(1)
+		_shrimpInteract(1)
 	
 	var inputVector = Vector2(0,0)
 	

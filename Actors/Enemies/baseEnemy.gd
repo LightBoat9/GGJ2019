@@ -17,12 +17,9 @@ var health
 var maxHealth = 5
 var shrimpValue = 1
 
-enum States {basic, dead}
-
 func _ready():
 	#public relations
 	add_to_group("Enemies")
-	state = States.basic
 	health = maxHealth
 	
 	#graphics
@@ -31,7 +28,7 @@ func _ready():
 
 #general function to call when a shrimp interacts with this enemy
 func _shrimpInteract(var shrimpPower):
-	if (state != States.dead):
+	if (health > 0):
 		_takeDamage(shrimpPower)
 		return 0
 	else:
@@ -39,7 +36,7 @@ func _shrimpInteract(var shrimpPower):
 
 #inflicts damage to this enemy
 func _takeDamage(var damage):
-	if (state == States.dead):
+	if (health <= 0):
 		pass
 	else:
 		print("Taking "+String(damage)+" damage")
@@ -47,7 +44,6 @@ func _takeDamage(var damage):
 		health = max(health - damage, 0)
 		
 		if (health == 0):
-			state = States.dead
 			_updateGraphics()
 
 #deletes dead enemy and returns number of shrimp to spawn
@@ -59,7 +55,7 @@ func _consume():
 func _updateGraphics():
 	var newTex = null
 	
-	if (state == States.dead):
+	if (health<=0):
 		print("Switching to Dead Sprite")
 		newTex = tex_dead
 	
