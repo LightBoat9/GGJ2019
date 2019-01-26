@@ -2,12 +2,14 @@ extends KinematicBody2D
 
 onready var shrimp_origin = $ShrimpOrigin
 
+var aoi_radius = 128
+
 var movespeed = 0.75
 var maxmovespeed = 5
 var velocity = Vector2()
 
 func _draw():
-	draw_circle(Vector2(), 64, Color(0, 0, 0, 0.3))
+	draw_circle(Vector2(), aoi_radius, Color(0, 0, 0, 0.3))
 	
 func _physics_process(delta):
 	handle_movement(delta)
