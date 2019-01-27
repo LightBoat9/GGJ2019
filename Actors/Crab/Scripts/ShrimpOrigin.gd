@@ -7,6 +7,7 @@ var shrimp_speed = 50
 #shrimp tracking
 var shrimp = []
 var max_shrimp = 25
+var shrimp_worldTotal = 0
 
 #shrimp rings
 var padding_per_ring = 16
@@ -62,9 +63,6 @@ func _input(event):
 			var thisShrimp = remove_shrimp(shrimpIndex)
 			if (thisShrimp != null):
 				thisShrimp.queue_free()
-		
-		update_ring_positions()
-		update_shrimp_targets()
 
 func _process(delta):
 	update_position()
@@ -83,15 +81,21 @@ func update_position():
 func _physics_process(delta):
 	pass
 
-func add_shrimp():
-	if (shrimp.size()>=max_shrimp):
+func add_shrimp(var pos = global_position):
+	if (shrimp_worldTotal>=max_shrimp):
+		print("Bonus Points")
+		get_parent().get_node("GUI").score+=100
 		return
 	
 	var inst = Shrimp.instance()
-	inst.global_position = global_position - Vector2(100, 100)
+	inst.global_position = pos
 	shrimp.append(inst)
 	TopLevel.add_child(inst)
 	inst.shrimp_cursor = self
+	shrimp_worldTotal+=1
+	
+	if (!inst.is_connected("ImDead",self,"_shrimpDied")):
+		inst.connect("ImDead",self,"_shrimpDied")
 	
 	if (shrimp.size()>=totalRingCapacity):
 		append_ring_capacity()
@@ -119,16 +123,20 @@ func remove_shrimp(var index):
 	#print("Removing shrimp")
 	var thisShrimp = shrimp[index]
 	shrimp.remove(index)
+	
+	update_ring_positions()
+	update_shrimp_targets()
+	
 	return thisShrimp
 
 #launches shrimp at index towards cursor
 func launch_shrimp(var index):
-	print(index)
+	#print(index)
 	
 	if (shrimp.size()<=0):
 		return
 	
-	print(shrimp.size())
+	#print(shrimp.size())
 	
 	var thisShrimp = remove_shrimp(index)
 	thisShrimp.launch(get_global_mouse_position())
@@ -212,3 +220,9 @@ func calculate_ring_capacity(var ringIndex):
 	var ringCircumference = 2*PI*ringRadius
 	
 	return (ringCircumference / shrimp_size)
+
+func _shrimpDied(var inst):
+	shrimp_worldTotal-=1
+	
+	if (inst.is_connected("ImDead",self,"_shrimpDied")):
+		inst.disconnect("ImDead",self,"_shrimpDied")

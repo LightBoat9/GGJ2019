@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal ImDead
+
 const DeathParticles = preload('res://Actors/Shrimp/DeathParticles.tscn')
 
 var target_position = null
@@ -25,6 +27,7 @@ onready var attack_timer = $AttackTimer
 
 func _ready():
 	add_to_group("Players")
+	add_to_group("Shrimp")
 	
 	if not area.is_connected('body_entered', self, '_body_entered'):
 		area.connect('body_entered', self, '_body_entered')
@@ -37,7 +40,10 @@ func _ready():
 
 func _process(delta):
 	if enemy_touching and attack_timer.time_left == 0 and Input.is_mouse_button_pressed(BUTTON_RIGHT):
-		enemy_touching.shrimpInteract(swarmDamage)
+		var spawn = enemy_touching.shrimpInteract(swarmDamage)
+		if (spawn>0):
+			_spawn_shrimp(spawn)
+		
 		attack_timer.start()
 
 func _physics_process(delta):
@@ -59,8 +65,6 @@ func _physics_process(delta):
 			var collider = slideCollide.collider
 			
 			if collider.get_collision_layer_bit(0):
-				kill_shrimp()
-				print("Cool")
 				_return_to_cursor()
 	
 	
@@ -76,6 +80,8 @@ func kill_shrimp(anglev=Vector2()):
 	inst.rotation = anglev.angle()
 	get_parent().add_child(inst)
 	
+	emit_signal("ImDead")
+	emit_signal("ImDead", self)
 	
 	if self in shrimp_cursor.shrimp:
 		shrimp_cursor.remove_shrimp(shrimp_cursor.shrimp.find(self))
@@ -112,7 +118,7 @@ func _launch_update():
 	var targetProjection = 0 if (targetMag == 0) else velocity.dot(to_target)/targetMag
 	
 	if (targetProjection<=0):
-		print("projection return")
+		#print("projection return")
 		_return_to_cursor()
 
 func _return_to_cursor():
@@ -125,9 +131,18 @@ func _body_entered(body):
 		enemy_touching = body
 		
 		if (state == States.LAUNCHING):
-			enemy_touching.shrimpInteract(launchDamage)
+			var spawn = enemy_touching.shrimpInteract(launchDamage)
+			
+			if (spawn>0):
+				_spawn_shrimp(spawn)
+			
 			_return_to_cursor()
 
 func _body_exited(body):
 	if body.is_in_group('Enemies'):
 		enemy_touching = null
+
+func _spawn_shrimp(var n):
+	if shrimp_cursor != null:
+		for i in n:
+			shrimp_cursor.add_shrimp(global_position)

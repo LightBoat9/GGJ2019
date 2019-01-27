@@ -7,11 +7,12 @@ extends "res://Actors/Enemies/baseEnemy.gd"
 enum States{DEFAULT, PURSUING, ANTICIPATING, LUNGING}
 
 var velocity = Vector2()
+var dir = Vector2(1,0)
 var target = null
 var sightLimit_enter = 160
 var sightLimit_exit = 192
 
-var lungeLimit_enter = 80
+var lungeLimit_enter = 112
 
 var pursuitSpeed = 2
 var lungeSpeed = 6
@@ -42,6 +43,14 @@ func _physics_process(delta):
 		
 		move_and_slide(velocity/delta)
 
+func _die():
+	._die()
+	
+	anticipationTimer.stop()
+	lungeTimer.stop()
+	
+	velocity = Vector2()
+
 func _default_check():
 	for node in get_tree().get_nodes_in_group("Players"):
 		var dist = global_position.distance_to(node.global_position)
@@ -49,15 +58,27 @@ func _default_check():
 		if (dist<=sightLimit_enter):
 			state = States.PURSUING
 			target = node
-			print("Targeting "+str(node))
+			
+			if (!target.is_connected("ImDead",self,"_targetIsDead")):
+				target.connect("ImDead",self,"_targetIsDead")
+			
+			#print("Targeting "+str(node))
 			break
 
 func _pursuing_check():
+	if (target == null):
+		state = States.DEFAULT
+		velocity = Vector2()
+		return true
+	
 	var dist = global_position.distance_to(target.global_position)
 	
 	if (dist>sightLimit_exit):
 		state = States.DEFAULT
+		if (target.is_connected("ImDead",self,"_targetIsDead")):
+				target.disconnect("ImDead",self,"_targetIsDead")
 		target = null
+		
 		velocity = Vector2()
 		return true
 	elif (dist<=lungeLimit_enter):
@@ -70,33 +91,41 @@ func _pursuing_check():
 	return false
 
 func _pursuit():
-	var dir = (target.global_position-global_position).normalized()
+	dir = (target.global_position-global_position).normalized()
 	_set_image_angle(dir)
 	velocity = dir * pursuitSpeed
 
 func _lunge():
-	var dir = (target.global_position-global_position).normalized()
-	_set_image_angle(dir)
+	if (target != null):
+		dir = (target.global_position-global_position).normalized()
+		_set_image_angle(dir)
+	
 	velocity = dir * lungeSpeed
 	state = States.LUNGING
 	sprite.texture = tex_lunge
 	lungeTimer.start()
 
 func _anticipate():
-	var dir = (target.global_position-global_position).normalized()
-	_set_image_angle(dir)
+	if (target != null):
+		dir = (target.global_position-global_position).normalized()
+		_set_image_angle(dir)
 
 func _lungeStop():
 	eatRange.resize(min(eatRange.size(),maxEats))
 	
 	for eat in eatRange:
 		#kill shrimpies
-		print(str(eat))
+		
+		if (eat.is_in_group("Shrimp")):
+			eat.kill_shrimp(dir)
+		
 		pass
 	
 	velocity = Vector2()
 	state = States.PURSUING
 	sprite.texture = tex_default
+	
+	eatRange.clear()
 
 func _set_image_angle(var dir):
 	var angle = rad2deg(dir.angle())
@@ -110,10 +139,14 @@ func _set_image_angle(var dir):
 func _on_Area2D_body_entered(body):
 	if body.is_in_group("Players") and eatRange.find(body) == -1:
 		eatRange.append(body)
-		print("eaty")
 
 func _on_Area2D_body_exited(body):
 	var index = eatRange.find(body)
 	
 	if (index!=-1):
 		eatRange.remove(index)
+
+func _targetIsDead():
+	if (target != null && target.is_connected("ImDead",self,"_targetIsDead")):
+		target.disconnect("ImDead",self,"_targetIsDead")
+	target = null

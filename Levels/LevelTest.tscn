@@ -3,7 +3,7 @@
 [ext_resource path="res://Actors/Crab/Crab.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
 [ext_resource path="res://Actors/Enemies/goby/Goby.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Actors/Enemies/debugEnemy.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Actors/Enemies/Anemone.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -20,6 +20,7 @@ _sections_unfolded = [ "Collision", "collision" ]
 
 [node name="StaticBody2D" type="StaticBody2D" parent="." index="1"]
 
+editor/display_folded = true
 input_pickable = false
 collision_layer = 1
 collision_mask = 1
@@ -42,8 +43,12 @@ shape = SubResource( 1 )
 
 position = Vector2( 268.086, 348.57 )
 
-[node name="BaseEnemy" parent="." index="3" instance=ExtResource( 4 )]
+[node name="Anemone" parent="." index="3" instance=ExtResource( 4 )]
 
-position = Vector2( 440.522, 357.551 )
+position = Vector2( 490.815, 368.328 )
+
+[node name="Anemone2" parent="." index="4" instance=ExtResource( 4 )]
+
+position = Vector2( 103.434, 206.071 )
 
 

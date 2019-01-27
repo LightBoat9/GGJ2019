@@ -13,7 +13,7 @@ var tex_idle
 var tex_dead
 
 # Stats
-var shrimpValue = 1
+var shrimpValue = 2
 onready var healthCircle = PoolVector2Array()
 var health
 var maxHealth = 5
@@ -94,6 +94,7 @@ func generate_healthCircle(var offset, var radius):
 		healthCircle.append(offset+Vector2(cos(radian),-sin(radian))*radius)
 
 func _draw():
-	draw_circle(healthCircle_offset,healthCircle_radius+1,Color(0,0,0))
-	if (healthCircle.size()>=3):
-		draw_colored_polygon(healthCircle, Color(0,1,0))
+	if (health>0):
+		draw_circle(healthCircle_offset,healthCircle_radius+1,Color(0,0,0))
+		if (healthCircle.size()>=3):
+			draw_colored_polygon(healthCircle, Color(0,1,0))

@@ -9,12 +9,16 @@ var healthCircle_offset = Vector2(
 		OS.window_size.y/2 - (healthCircle_radius + healthCircle_padding)
 	)
 	
-var score = 999
+var score = 999 setget set_score
 
 onready var crab = get_parent()
 
 func _ready():
 	generate_healthCircle()
+
+func set_score(var val):
+	score = val
+	update()
 
 func _draw():
 	draw_circle(healthCircle_offset,healthCircle_radius+1,Color(0,0,0))
