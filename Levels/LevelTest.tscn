@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Levels/levelTest.png" type="Texture" id=1]
@@ -5,13 +6,20 @@
 [ext_resource path="res://icon.png" type="Texture" id=3]
 [ext_resource path="res://Actors/Enemies/goby/Goby.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Actors/Enemies/Anemone.tscn" type="PackedScene" id=5]
+=======
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Actors/Crab/Crab.tscn" type="PackedScene" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://Actors/Enemies/Anemone.tscn" type="PackedScene" id=3]
+>>>>>>> bfddc15e315e83bf04e629e35dda71ecd7f5a92c
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
 
-[node name="LevelTest" type="Node2D" index="0"]
+[node name="LevelTest" type="Node2D"]
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="." index="0"]
 
@@ -62,15 +70,23 @@ texture = ExtResource( 3 )
 position = Vector2( 539.883, 241.569 )
 shape = SubResource( 1 )
 
+<<<<<<< HEAD
 [node name="Goby" parent="." index="3" instance=ExtResource( 4 )]
 
 position = Vector2( 124.042, 376.27 )
 
 [node name="Anemone2" parent="." index="4" instance=ExtResource( 5 )]
+=======
+[node name="Anemone" parent="." index="2" instance=ExtResource( 3 )]
+>>>>>>> bfddc15e315e83bf04e629e35dda71ecd7f5a92c
 
 position = Vector2( 382.657, 314.658 )
 
+<<<<<<< HEAD
 [node name="Anemone" parent="." index="5" instance=ExtResource( 5 )]
+=======
+[node name="Anemone2" parent="." index="3" instance=ExtResource( 3 )]
+>>>>>>> bfddc15e315e83bf04e629e35dda71ecd7f5a92c
 
 position = Vector2( 396.512, 366.511 )
 

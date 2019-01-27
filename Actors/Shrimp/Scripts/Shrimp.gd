@@ -6,6 +6,7 @@ const DeathParticles = preload('res://Actors/Shrimp/DeathParticles.tscn')
 
 var target_position = null
 var velocity = Vector2()
+var knockback_velocity = Vector2()
 
 var acceleration = 2
 var maxSpeed = 8
@@ -19,11 +20,12 @@ var launchDamage = 0.25
 var enemy_touching
 var shrimp_cursor = null
 
-enum States { DEFAULT, LAUNCHING } 
+enum States { DEFAULT, LAUNCHING, KNOCKBACK } 
 var state = States.DEFAULT
 
 onready var area = $Area2D
 onready var attack_timer = $AttackTimer
+onready var knockback_timer = $KnockbackTimer
 
 func _ready():
 	add_to_group("Players")
@@ -45,6 +47,10 @@ func _process(delta):
 			_spawn_shrimp(spawn)
 		
 		attack_timer.start()
+		
+	if state == States.KNOCKBACK and knockback_timer.time_left == 0:
+		state = States.LAUNCHING
+		_return_to_cursor()
 
 func _physics_process(delta):
 	if (state == States.LAUNCHING):
@@ -57,7 +63,11 @@ func _physics_process(delta):
 	
 	rotation += lerp(minSpin, maxSpin, velocityMag/maxSpeed)
 	
-	move_and_slide(velocity/delta)
+	if state != States.KNOCKBACK:
+		move_and_slide(velocity/delta)
+	else:
+		move_and_slide(knockback_velocity / delta)
+	
 	if (state == States.LAUNCHING && get_slide_count()>0):
 		var slideCollide = get_slide_collision(get_slide_count()-1)
 		
@@ -65,6 +75,7 @@ func _physics_process(delta):
 			var collider = slideCollide.collider
 			
 			if collider.get_collision_layer_bit(0):
+				kockback(slideCollide.normal * 5, 0.2)
 				_return_to_cursor()
 	
 	
@@ -73,6 +84,13 @@ func _physics_process(delta):
 func assign_target(var targ):
 	target_position = targ
 	update()
+	
+func kockback(velocity, duration):
+	if state != States.KNOCKBACK:
+		state = States.KNOCKBACK
+		knockback_velocity = velocity
+		knockback_timer.wait_time = duration
+		knockback_timer.start()
 	
 func kill_shrimp(anglev=Vector2()):
 	var inst = DeathParticles.instance()
@@ -122,7 +140,7 @@ func _launch_update():
 		_return_to_cursor()
 
 func _return_to_cursor():
-	if (shrimp_cursor != null):
+	if (shrimp_cursor != null and state == States.LAUNCHING):
 		shrimp_cursor.add_shrimp_existing(self)
 		state = States.DEFAULT
 
