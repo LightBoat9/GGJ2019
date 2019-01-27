@@ -53,7 +53,10 @@ func _takeDamage(var damage):
 		update()
 		
 		if (health == 0):
-			_updateGraphics()
+			_die()
+
+func _die():
+	mySprite.texture = tex_dead
 
 #deletes dead enemy and returns number of shrimp to spawn
 func _consume():
