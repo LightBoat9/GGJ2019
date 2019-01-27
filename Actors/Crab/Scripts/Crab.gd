@@ -8,9 +8,21 @@ var movespeed = 0.75
 var maxmovespeed = 5
 var velocity = Vector2()
 
-func _draw():
-	#draw_circle(Vector2(), aoi_radius, Color(0, 0, 0, 0.3))
-	pass
+
+onready var gui_draw = $GUI/CustomDraw
+var health = 5
+var maxHealth = 5
+		
+#inflicts damage to this crab
+func _takeDamage(var damage):
+	if (health <= 0):
+		pass
+	else:
+		print("Taking "+String(damage)+" damage")
+		
+		health = max(health - damage, 0)
+		
+		gui_draw.generate_healthCircle()
 
 func _physics_process(delta):
 	handle_movement(delta)

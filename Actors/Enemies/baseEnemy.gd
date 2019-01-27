@@ -13,10 +13,10 @@ var tex_idle
 var tex_dead
 
 # Stats
-var health
-var maxHealth = 5
 var shrimpValue = 1
 onready var healthCircle = PoolVector2Array()
+var health
+var maxHealth = 5
 var healthCircle_sections = 30
 var healthCircle_radius = 16
 var healthCircle_offset = Vector2(0,-48)
