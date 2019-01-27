@@ -11,9 +11,27 @@
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
 
-[node name="LevelTest" type="Node2D"]
+[node name="LevelTest" type="Node2D" index="0"]
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="." index="0"]
+[node name="ColorRect" type="ColorRect" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -243.0
+margin_top = -150.0
+margin_right = 810.0
+margin_bottom = 612.0
+rect_pivot_offset = Vector2( 0.940384, -0.893005 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.574219, 0.516811, 0.291595, 1 )
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." index="1"]
 
 input_pickable = false
 collision_layer = 1
@@ -31,17 +49,18 @@ texture = ExtResource( 1 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D2" index="1"]
 
+visible = false
 position = Vector2( 99.6978, -5.55136 )
 build_mode = 1
 polygon = PoolVector2Array( 41.8248, -93.6206, 15.102, -13.4522, -57.3844, 0.570236, -74.0048, 47.1074, -48.5201, 71.484, -35.2238, 140.182, -83.977, 176.747, -67.3566, 188.935, -60.7084, 206.664, -71.7887, 218.852, -95.0573, 206.664, -105.03, 237.688, -65.1405, 266.497, -66.2486, 291.982, -23.0355, 286.442, -0.974548, 309.92, -3.91492, 344.469, -34.0535, 348.145, -45.0799, 337.853, -71.5431, 349.615, -78.1588, 392.985, -28.1728, 437.09, 11.5219, 445.176, 107.819, 392.25, 152.659, 406.952, 162.95, 434.15, 142.368, 454.732, 184.368, 480.557, 186.358, 509.084, 253.363, 493.825, 253.363, 456.011, 239.431, 449.376, 253.363, 397.63, 319.705, 429.474, 307.1, 456.011, 372.778, 490.508, 391.354, 476.577, 398.651, 489.181, 445.181, 468.694, 447.576, 420.796, 466.136, 401.037, 473.92, 380.082, 448.773, 346.553, 466.264, 301.834, 438.124, 252.737, 372.263, 261.12, 372.263, 273.693, 327.957, 312.012, 282.453, 284.47, 262.096, 228.189, 272.873, 199.45, 343.524, 186.877, 383.221, 135.659, 344.08, 85.9028, 338.772, 107.132, 313.563, 109.786, 292.997, 126.371, 267.787, 117.747, 267.123, 81.2589, 304.938, 60.693, 301.494, 36.0602, 246.362, 12.5374, 234.601, 35.3251, 176.529, 50.0269, 157.417, 33.1199, 139.775, 36.7953, 126.543, 18.4181, 139.039, 3.71632, 100.815, -16.1311, 89.0534, 28.7093, 51.5639, 32.3848, 18.1825, -12.7223, 44.0291, -92.7006, 582.618, -106.982, 557.565, 546.056, -242.449, 549.397, -197.354, -86.9399 )
 
-[node name="Crab" parent="." index="1" instance=ExtResource( 2 )]
+[node name="Crab" parent="." index="2" instance=ExtResource( 2 )]
 
 position = Vector2( 203.228, 139.146 )
 collision_mask = 3
 _sections_unfolded = [ "Collision", "collision" ]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." index="2"]
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="3"]
 
 position = Vector2( 197.461, -66.3226 )
 input_pickable = false
@@ -62,15 +81,15 @@ texture = ExtResource( 3 )
 position = Vector2( 539.883, 241.569 )
 shape = SubResource( 1 )
 
-[node name="Goby" parent="." index="3" instance=ExtResource( 4 )]
+[node name="Goby" parent="." index="4" instance=ExtResource( 4 )]
 
 position = Vector2( 124.042, 376.27 )
 
-[node name="Anemone2" parent="." index="4" instance=ExtResource( 5 )]
+[node name="Anemone2" parent="." index="5" instance=ExtResource( 5 )]
 
 position = Vector2( 382.657, 314.658 )
 
-[node name="Anemone" parent="." index="5" instance=ExtResource( 5 )]
+[node name="Anemone" parent="." index="6" instance=ExtResource( 5 )]
 
 position = Vector2( 396.512, 366.511 )
 
