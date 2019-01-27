@@ -22,6 +22,8 @@ onready var area = $Area2D
 onready var attack_timer = $AttackTimer
 
 func _ready():
+	add_to_group("Players")
+	
 	if not area.is_connected('body_entered', self, '_body_entered'):
 		area.connect('body_entered', self, '_body_entered')
 		

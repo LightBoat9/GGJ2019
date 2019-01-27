@@ -12,7 +12,10 @@ var velocity = Vector2()
 onready var gui_draw = $CustomDraw
 var health = 5
 var maxHealth = 5
-		
+
+func _ready():
+	add_to_group("Players")
+
 #inflicts damage to this crab
 func _takeDamage(var damage):
 	if (health <= 0):
