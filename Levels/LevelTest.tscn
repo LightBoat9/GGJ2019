@@ -1,13 +1,17 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Levels/level_pieces/L-pieceRock.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Levels/level_pieces/beanRock.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Levels/level_pieces/averageRock.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Levels/level_pieces/smallRock.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Actors/Crab/Crab.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Actors/Enemies/goby/Goby.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Actors/Enemies/Anemone.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Actors/Enemies/starfish/Starfish.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Levels/level_pieces/mediumRock.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Levels/level_pieces/bigRock.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Actors/Crab/Crab.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Actors/Enemies/goby/Goby.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Actors/Enemies/Anemone.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Levels/level_pieces/tubeCoral-1.png" type="Texture" id=10]
+[ext_resource path="res://Levels/level_pieces/bushCoral.png" type="Texture" id=11]
+[ext_resource path="res://Levels/level_pieces/tableCoral.png" type="Texture" id=12]
 
 [node name="LevelTest" type="Node2D"]
 
@@ -39,50 +43,135 @@ position = Vector2( 58.3838, 463.317 )
 
 [node name="beanRock2" parent="Level Pieces" index="1" instance=ExtResource( 2 )]
 
-position = Vector2( 669.474, 385.457 )
-rotation = 0.481617
+position = Vector2( 767.657, 163.916 )
+rotation = 0.17671
 scale = Vector2( 1.46616, 1.48122 )
 
 [node name="averageRock" parent="Level Pieces" index="2" instance=ExtResource( 3 )]
 
-position = Vector2( 353.752, 20.2652 )
+position = Vector2( 290.814, -60.2955 )
 rotation = 0.76429
+scale = Vector2( 1, 1 )
 
 [node name="beanRock" parent="Level Pieces" index="3" instance=ExtResource( 2 )]
 
-position = Vector2( -18.8663, 131.596 )
-rotation = -1.76596
+position = Vector2( -258.031, 411.041 )
+rotation = -2.56394
 
 [node name="smallRock" parent="Level Pieces" index="4" instance=ExtResource( 4 )]
 
 position = Vector2( 439.93, 174.973 )
 rotation = 0.532032
+scale = Vector2( 1, 1 )
 
 [node name="smallRock2" parent="Level Pieces" index="5" instance=ExtResource( 4 )]
 
-position = Vector2( 519.91, 622.848 )
+position = Vector2( 553.071, 643.95 )
 rotation = 0.902582
 
-[node name="Crab" parent="." index="2" instance=ExtResource( 5 )]
+[node name="mediumRock" parent="Level Pieces" index="6" instance=ExtResource( 5 )]
+
+position = Vector2( 391.106, 606.44 )
+
+[node name="bigRock" parent="Level Pieces" index="7" instance=ExtResource( 6 )]
+
+position = Vector2( -150.658, 54.0135 )
+rotation = -0.637757
+
+[node name="Crab" parent="." index="2" instance=ExtResource( 7 )]
 
 position = Vector2( 203.228, 139.146 )
 collision_mask = 3
 _sections_unfolded = [ "Collision", "collision" ]
 
-[node name="Goby" parent="." index="3" instance=ExtResource( 6 )]
+[node name="Goby" parent="." index="3" instance=ExtResource( 8 )]
 
 position = Vector2( 124.042, 376.27 )
 
-[node name="Anemone2" parent="." index="4" instance=ExtResource( 7 )]
+[node name="Anemone3" parent="." index="4" instance=ExtResource( 9 )]
 
-position = Vector2( 423.304, 47.2996 )
+position = Vector2( 437.449, -8.78875 )
+scale = Vector2( 1.03662, 1.03662 )
 
-[node name="Anemone" parent="." index="5" instance=ExtResource( 7 )]
+[node name="Anemone2" parent="." index="5" instance=ExtResource( 9 )]
+
+position = Vector2( 414.576, 38.5721 )
+scale = Vector2( 1.27273, 1.27273 )
+
+[node name="Anemone" parent="." index="6" instance=ExtResource( 9 )]
 
 position = Vector2( 441.938, 86.5882 )
 
-[node name="Starfish" parent="." index="6" instance=ExtResource( 8 )]
+[node name="foreground" type="Node2D" parent="." index="7"]
 
-position = Vector2( 459.358, 465.176 )
+z_index = 8
+z_as_relative = false
+_sections_unfolded = [ "Z Index" ]
+
+[node name="tubeCoral-1" type="Sprite" parent="foreground" index="0"]
+
+position = Vector2( 521.996, -193 )
+texture = ExtResource( 10 )
+
+[node name="tubeCoral-2" type="Sprite" parent="foreground" index="1"]
+
+position = Vector2( 689.258, -8.62593 )
+rotation = -3.14159
+scale = Vector2( 1.10982, -1 )
+texture = ExtResource( 10 )
+
+[node name="tubeCoral-3" type="Sprite" parent="foreground" index="2"]
+
+position = Vector2( -12.6421, 165.47 )
+rotation = 0.201019
+scale = Vector2( 1.01859, 0.945474 )
+texture = ExtResource( 10 )
+
+[node name="tubeCoral-4" type="Sprite" parent="foreground" index="3"]
+
+position = Vector2( 13.9838, 519.188 )
+rotation = -0.108904
+scale = Vector2( 1.32078, 1.35679 )
+texture = ExtResource( 10 )
+
+[node name="bushCoral2" type="Sprite" parent="foreground" index="4"]
+
+position = Vector2( 426.723, 501.14 )
+rotation = -0.108904
+scale = Vector2( 0.941597, 0.799538 )
+texture = ExtResource( 11 )
+
+[node name="bushCoral" type="Sprite" parent="foreground" index="5"]
+
+position = Vector2( -65.8135, 266.275 )
+rotation = 0.435088
+scale = Vector2( 1.07033, 1.05733 )
+texture = ExtResource( 11 )
+
+[node name="tableCoral" type="Sprite" parent="foreground" index="6"]
+
+position = Vector2( -352.685, 70.0031 )
+texture = ExtResource( 12 )
+
+[node name="tableCoral2" type="Sprite" parent="foreground" index="7"]
+
+position = Vector2( 501.263, 169.868 )
+scale = Vector2( -0.524608, 0.607193 )
+texture = ExtResource( 12 )
+
+[node name="tableCoral3" type="Sprite" parent="foreground" index="8"]
+
+position = Vector2( 249.064, 512.453 )
+rotation = -0.625079
+scale = Vector2( -0.770822, 0.896077 )
+texture = ExtResource( 12 )
+
+[node name="tableCoral4" type="Sprite" parent="foreground" index="9"]
+
+position = Vector2( 239.924, -54.7591 )
+rotation = 0.870982
+scale = Vector2( -0.770822, 0.896077 )
+texture = ExtResource( 12 )
+_sections_unfolded = [ "Z Index" ]
 
 

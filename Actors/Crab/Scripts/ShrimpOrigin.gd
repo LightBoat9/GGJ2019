@@ -23,6 +23,8 @@ onready var  TopLevel = get_node('/root').get_child(get_node('/root').get_child_
 const cursor_tex = preload("res://Actors/Shrimp/Sprite/tempCenter.png")
 
 func  _ready():
+	shrimp_worldTotal = get_tree().get_nodes_in_group("Shrimp").size()
+	print("Existing shrimp: "+str(shrimp_worldTotal))
 	pass
 
 """
@@ -84,6 +86,8 @@ func _physics_process(delta):
 	pass
 
 func add_shrimp(var pos = global_position):
+	print(shrimp_worldTotal)
+	
 	if (shrimp_worldTotal>=max_shrimp):
 		print("Bonus Points")
 		get_parent().get_node("GUI").score+=100

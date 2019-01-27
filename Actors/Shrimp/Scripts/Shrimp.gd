@@ -33,9 +33,11 @@ onready var stunned_timer = $StunnedTimer
 
 var launch_passed = false
 
-func _ready():
+func _enter_tree():
 	add_to_group("Players")
 	add_to_group("Shrimp")
+
+func _ready():
 	
 	if not area.is_connected('body_entered', self, '_body_entered'):
 		area.connect('body_entered', self, '_body_entered')
