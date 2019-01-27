@@ -69,6 +69,13 @@ wait_time = 1.0
 one_shot = true
 autostart = false
 
+[node name="StunnedTimer" type="Timer" parent="." index="6"]
+
+process_mode = 1
+wait_time = 5.0
+one_shot = true
+autostart = false
+
 [connection signal="timeout" from="LaunchTimer" to="." method="_launch_timer_up"]
 
 

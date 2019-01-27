@@ -106,7 +106,8 @@ func add_shrimp_existing(var thisShrimp):
 	if (shrimp.size()>=max_shrimp):
 		return
 	
-	shrimp.append(thisShrimp)
+	if not thisShrimp in shrimp:
+		shrimp.append(thisShrimp)
 	thisShrimp.shrimp_cursor = self
 	
 	if (shrimp.size()>=totalRingCapacity):

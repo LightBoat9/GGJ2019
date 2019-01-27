@@ -9,7 +9,7 @@ var healthCircle_offset = Vector2(
 		600/2 - (healthCircle_radius + healthCircle_padding)
 	)
 	
-var score = 999 setget set_score
+var score = 0 setget set_score
 
 onready var crab = get_parent()
 

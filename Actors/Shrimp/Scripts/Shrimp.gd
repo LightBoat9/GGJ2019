@@ -14,7 +14,7 @@ var launchSpeed = 12
 var minSpin = 0.05
 var maxSpin = 0.25
 
-var swarmDamage = 0.1
+var swarmDamage = 0.02
 var launchDamage = 0.25
 
 var enemy_touching
@@ -29,6 +29,7 @@ onready var area = $Area2D
 onready var attack_timer = $AttackTimer
 onready var knockback_timer = $KnockbackTimer
 onready var launch_timer = $LaunchTimer
+onready var stunned_timer = $StunnedTimer
 
 var launch_passed = false
 
@@ -44,24 +45,26 @@ func _ready():
 	target_position = Vector2()
 	minSpin += rand_range(-0.01,0.02)
 	maxSpin += rand_range(-0.05,0.05)
+	
 
 func _process(delta):
 	if enemy_touching and attack_timer.time_left == 0 and Input.is_mouse_button_pressed(BUTTON_RIGHT):
-		var spawn = enemy_touching.shrimpInteract(swarmDamage)
-		if (spawn>0):
-			_spawn_shrimp(spawn)
-		
-		attack_timer.start()
-		
-	if state == States.KNOCKBACK and knockback_timer.time_left == 0:
-		state = States.LAUNCHING
-		_return_to_cursor()
+		if state != States.KNOCKBACK:
+			var spawn = enemy_touching.shrimpInteract(swarmDamage)
+			if (spawn>0):
+				_spawn_shrimp(spawn)
+			
+			attack_timer.start()
 		
 	var crab = get_tree().get_nodes_in_group("Crab")[0]
 	if crab and state == States.IDLE and not self in crab.get_node('ShrimpOrigin').shrimp:
 		if global_position.distance_to(crab.global_position) <= idle_pickup_distance:
 			state = States.DEFAULT
 			crab.get_node('ShrimpOrigin').add_shrimp_existing(self)
+	
+	if state == States.KNOCKBACK and knockback_timer.time_left == 0 and stunned_timer.time_left == 0:
+		state = States.LAUNCHING
+		_return_to_cursor()
 
 func _physics_process(delta):
 	if (state == States.LAUNCHING):
@@ -77,7 +80,7 @@ func _physics_process(delta):
 	if state != States.IDLE:
 		if state != States.KNOCKBACK:
 			move_and_slide(velocity/delta)
-		else:
+		elif knockback_timer.time_left > 0:
 			move_and_slide(knockback_velocity / delta)
 	
 	if (state == States.LAUNCHING && get_slide_count()>0):
@@ -98,12 +101,16 @@ func assign_target(var targ):
 	target_position = targ
 	update()
 	
-func kockback(velocity, duration):
+func kockback(velocity, duration, stun_duration=0):
 	if state != States.KNOCKBACK:
 		state = States.KNOCKBACK
 		knockback_velocity = velocity
 		knockback_timer.wait_time = duration
 		knockback_timer.start()
+		
+		if stun_duration > 0:
+			stunned_timer.wait_time = stun_duration
+			stunned_timer.start()
 		
 		if (!launch_timer.is_stopped()):
 			launch_timer.stop()
@@ -114,8 +121,8 @@ func kill_shrimp(anglev=Vector2()):
 	inst.rotation = anglev.angle()
 	get_parent().add_child(inst)
 	
-	emit_signal("ImDead")
-	#emit_signal("ImDead", self)
+	#emit_signal("ImDead")
+	emit_signal("ImDead", self)
 	
 	if self in shrimp_cursor.shrimp:
 		shrimp_cursor.remove_shrimp(shrimp_cursor.shrimp.find(self))

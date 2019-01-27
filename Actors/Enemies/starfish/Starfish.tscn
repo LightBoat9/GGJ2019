@@ -1,0 +1,71 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Actors/Enemies/starfish/Scripts/Starfish.gd" type="Script" id=1]
+[ext_resource path="res://Actors/Enemies/starfish/Scripts/StateMachine.gd" type="Script" id=2]
+[ext_resource path="res://Actors/Enemies/starfish/Scripts/Float.gd" type="Script" id=3]
+[ext_resource path="res://Actors/Enemies/starfish/Scripts/Spin.gd" type="Script" id=4]
+[ext_resource path="res://Actors/Enemies/starfish/starfish2.png" type="Texture" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 16.0
+
+[node name="Starfish" type="KinematicBody2D"]
+
+input_pickable = false
+collision_layer = 3
+collision_mask = 1
+collision/safe_margin = 0.08
+script = ExtResource( 1 )
+_sections_unfolded = [ "Collision" ]
+
+[node name="StateMachine" type="Node" parent="." index="0"]
+
+script = ExtResource( 2 )
+
+[node name="Float" type="Node" parent="StateMachine" index="0"]
+
+script = ExtResource( 3 )
+
+[node name="AnimateTimer" type="Timer" parent="StateMachine/Float" index="0"]
+
+process_mode = 1
+wait_time = 0.5
+one_shot = true
+autostart = false
+
+[node name="RestTimer" type="Timer" parent="StateMachine/Float" index="1"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = false
+
+[node name="RoamTimer" type="Timer" parent="StateMachine/Float" index="2"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[node name="Spin" type="Node" parent="StateMachine" index="1"]
+
+script = ExtResource( 4 )
+
+[node name="SpinTimer" type="Timer" parent="StateMachine/Spin" index="0"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[node name="Sprite" type="Sprite" parent="." index="1"]
+
+texture = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+
+shape = SubResource( 1 )
+
+

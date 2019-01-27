@@ -152,7 +152,7 @@ func _on_Area2D_body_exited(body):
 	if (index!=-1):
 		eatRange.remove(index)
 
-func _targetIsDead():
+func _targetIsDead(inst):
 	if (target != null && target.is_connected("ImDead",self,"_targetIsDead")):
 		target.disconnect("ImDead",self,"_targetIsDead")
 	target = null
