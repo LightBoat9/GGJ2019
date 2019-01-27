@@ -19,6 +19,9 @@ var lungeSpeed = 6
 onready var anticipationTimer = $anticipationTimer
 onready var lungeTimer = $lungeTimer
 onready var sprite = $Sprite
+onready var biteCollider = $Sprite/Area2D
+var maxEats = 5
+var eatRange = []
 
 onready var tex_default = load("res://Actors/Enemies/debugEnemy.png")
 onready var tex_anticipation = load("res://Actors/Enemies/debugEnemy_anticipation.png")
@@ -84,6 +87,13 @@ func _anticipate():
 	_set_image_angle(dir)
 
 func _lungeStop():
+	eatRange.resize(min(eatRange.size(),maxEats))
+	
+	for eat in eatRange:
+		#kill shrimpies
+		print(str(eat))
+		pass
+	
 	velocity = Vector2()
 	state = States.PURSUING
 	sprite.texture = tex_default
@@ -96,3 +106,14 @@ func _set_image_angle(var dir):
 		sprite.flip_v = true
 	else:
 		sprite.flip_v = false
+
+func _on_Area2D_body_entered(body):
+	if body.is_in_group("Players") and eatRange.find(body) == -1:
+		eatRange.append(body)
+		print("eaty")
+
+func _on_Area2D_body_exited(body):
+	var index = eatRange.find(body)
+	
+	if (index!=-1):
+		eatRange.remove(index)
