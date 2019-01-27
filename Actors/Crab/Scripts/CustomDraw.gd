@@ -6,8 +6,10 @@ var healthCircle_radius = 32
 var healthCircle_padding = 8
 var healthCircle_offset = Vector2(
 		OS.window_size.x/2 - healthCircle_radius - healthCircle_padding, 
-		healthCircle_radius + healthCircle_padding - OS.window_size.y/2
+		OS.window_size.y/2 - (healthCircle_radius + healthCircle_padding)
 	)
+	
+var score = 999
 
 onready var crab = get_parent()
 
@@ -18,6 +20,8 @@ func _draw():
 	draw_circle(healthCircle_offset,healthCircle_radius+1,Color(0,0,0))
 	if (healthCircle.size()>=3):
 		draw_colored_polygon(healthCircle, Color(0,0.4,1))
+		
+	draw_string(load("res://Fonts/font.tres"), Vector2(-OS.window_size.x/2 + 8, OS.window_size.y/2 - 8), str(score))
 	
 func generate_healthCircle():
 	var offset = healthCircle_offset

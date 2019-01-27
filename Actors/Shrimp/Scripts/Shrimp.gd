@@ -21,6 +21,8 @@ var state = States.DEFAULT
 onready var area = $Area2D
 onready var attack_timer = $AttackTimer
 
+var origin
+
 func _ready():
 	add_to_group("Players")
 	
@@ -66,6 +68,10 @@ func _physics_process(delta):
 func assign_target(var targ):
 	target_position = targ
 	update()
+	
+func kill_shrimp():
+	origin.remove_shrimp(origin.shrimp.find(self))
+	queue_free()
 
 func velocity_to_target():
 	if (state == States.LAUNCHING):

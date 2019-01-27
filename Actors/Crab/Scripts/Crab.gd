@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-onready var shrimp_origin = $ShrimpOrigin
+onready var shrimp_origin = $GUI
 
 var aoi_radius = 64
 
@@ -8,8 +8,7 @@ var movespeed = 0.75
 var maxmovespeed = 5
 var velocity = Vector2()
 
-
-onready var gui_draw = $CustomDraw
+onready var gui_draw = $GUI
 var health = 5
 var maxHealth = 5
 
