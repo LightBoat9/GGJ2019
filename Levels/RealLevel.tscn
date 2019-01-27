@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Levels/level_pieces/averageRock.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Levels/level_pieces/bigRock.tscn" type="PackedScene" id=2]
@@ -11,6 +11,9 @@
 [ext_resource path="res://Actors/Enemies/Anemone.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Actors/Enemies/goby/Goby.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Actors/Enemies/starfish/Starfish.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Levels/level_pieces/tubeCoral-1.png" type="Texture" id=12]
+[ext_resource path="res://Levels/level_pieces/tableCoral.png" type="Texture" id=13]
+[ext_resource path="res://Levels/level_pieces/bushCoral.png" type="Texture" id=14]
 
 [node name="RealLevel" type="Node2D" index="0"]
 
@@ -191,6 +194,8 @@ scale = Vector2( 1.53903, 1.53903 )
 
 [node name="Characters" type="Node2D" parent="." index="2"]
 
+editor/display_folded = true
+
 [node name="Crab" parent="Characters" index="0" instance=ExtResource( 7 )]
 
 position = Vector2( 101.485, 261.276 )
@@ -244,7 +249,7 @@ scale = Vector2( 1.12717, 1.12717 )
 
 [node name="Goby4" parent="Characters" index="11" instance=ExtResource( 10 )]
 
-position = Vector2( 3094.38, 250.564 )
+position = Vector2( 2830.04, 240.494 )
 
 [node name="Anemone6" parent="Characters" index="12" instance=ExtResource( 9 )]
 
@@ -268,8 +273,147 @@ position = Vector2( 2011.14, 608.477 )
 
 [node name="Foreground" type="Node2D" parent="." index="3"]
 
+editor/display_folded = true
 z_index = 8
 z_as_relative = false
 _sections_unfolded = [ "Z Index" ]
+
+[node name="tubeCoral-1" type="Sprite" parent="Foreground" index="0"]
+
+position = Vector2( -65.1458, 373.354 )
+texture = ExtResource( 12 )
+
+[node name="tubeCoral-2" type="Sprite" parent="Foreground" index="1"]
+
+position = Vector2( 1165.56, 320.38 )
+scale = Vector2( -0.919314, 1 )
+texture = ExtResource( 12 )
+
+[node name="tubeCoral-5" type="Sprite" parent="Foreground" index="2"]
+
+position = Vector2( 2817.06, 738.289 )
+scale = Vector2( -0.919314, 1 )
+texture = ExtResource( 12 )
+
+[node name="tubeCoral-6" type="Sprite" parent="Foreground" index="3"]
+
+position = Vector2( 3272.58, 191.975 )
+rotation = -0.431071
+scale = Vector2( -1.15713, 1.35728 )
+texture = ExtResource( 12 )
+
+[node name="tubeCoral-3" type="Sprite" parent="Foreground" index="4"]
+
+position = Vector2( 579.111, -126.637 )
+scale = Vector2( -0.919314, 1 )
+texture = ExtResource( 12 )
+
+[node name="tubeCoral-4" type="Sprite" parent="Foreground" index="5"]
+
+position = Vector2( 1681.83, 214.47 )
+scale = Vector2( 0.539506, 0.638938 )
+texture = ExtResource( 12 )
+
+[node name="tableCoral" type="Sprite" parent="Foreground" index="6"]
+
+position = Vector2( 437.485, 50.5898 )
+texture = ExtResource( 13 )
+
+[node name="tableCoral2" type="Sprite" parent="Foreground" index="7"]
+
+position = Vector2( 735.14, 15.3924 )
+scale = Vector2( -1.07556, 1 )
+texture = ExtResource( 13 )
+
+[node name="tableCoral3" type="Sprite" parent="Foreground" index="8"]
+
+position = Vector2( 1084.22, 391.066 )
+rotation = 0.759534
+scale = Vector2( 0.959296, 1 )
+texture = ExtResource( 13 )
+
+[node name="tableCoral4" type="Sprite" parent="Foreground" index="9"]
+
+position = Vector2( 1313.88, 1.46416 )
+rotation = -0.47684
+scale = Vector2( 0.959296, 1 )
+texture = ExtResource( 13 )
+
+[node name="tableCoral5" type="Sprite" parent="Foreground" index="10"]
+
+position = Vector2( 1896, 788.985 )
+rotation = 0.93095
+scale = Vector2( 0.849993, 1 )
+texture = ExtResource( 13 )
+
+[node name="tableCoral6" type="Sprite" parent="Foreground" index="11"]
+
+position = Vector2( 1571.49, 614.145 )
+rotation = -0.429667
+scale = Vector2( -1.01743, 1 )
+texture = ExtResource( 13 )
+
+[node name="tableCoral7" type="Sprite" parent="Foreground" index="12"]
+
+position = Vector2( 2869.56, 579.424 )
+rotation = -0.167354
+scale = Vector2( -1.01743, 1 )
+texture = ExtResource( 13 )
+
+[node name="bushCoral" type="Sprite" parent="Foreground" index="13"]
+
+position = Vector2( 1345.34, 311.814 )
+rotation = 0.203702
+scale = Vector2( 0.849471, 0.944137 )
+texture = ExtResource( 14 )
+
+[node name="bushCoral2" type="Sprite" parent="Foreground" index="14"]
+
+position = Vector2( 73.9943, 586.224 )
+rotation = 0.203702
+scale = Vector2( 0.849471, 0.944137 )
+texture = ExtResource( 14 )
+
+[node name="bushCoral3" type="Sprite" parent="Foreground" index="15"]
+
+position = Vector2( 63.6867, 94.3762 )
+rotation = 2.67366
+scale = Vector2( 1.28714, 1.19147 )
+texture = ExtResource( 14 )
+
+[node name="bushCoral4" type="Sprite" parent="Foreground" index="16"]
+
+position = Vector2( 1831.19, -54.2446 )
+rotation = 3.65637
+scale = Vector2( 1.28714, 1.19147 )
+texture = ExtResource( 14 )
+
+[node name="bushCoral5" type="Sprite" parent="Foreground" index="17"]
+
+position = Vector2( 2348.13, 109 )
+rotation = 2.92608
+scale = Vector2( 1.28714, 1.19147 )
+texture = ExtResource( 14 )
+
+[node name="bushCoral6" type="Sprite" parent="Foreground" index="18"]
+
+position = Vector2( 2483.41, 641.24 )
+rotation = 0.0495737
+scale = Vector2( 1.28714, 1.19147 )
+texture = ExtResource( 14 )
+
+[node name="bushCoral7" type="Sprite" parent="Foreground" index="19"]
+
+position = Vector2( 3148.61, 75.9235 )
+rotation = -2.9789
+scale = Vector2( 1.07214, 0.992452 )
+texture = ExtResource( 14 )
+
+[node name="tableCoral8" type="Sprite" parent="Foreground" index="20"]
+
+position = Vector2( 3229.13, 489.537 )
+rotation = 0.558838
+scale = Vector2( 1.03869, 1.27613 )
+texture = ExtResource( 13 )
 
 
