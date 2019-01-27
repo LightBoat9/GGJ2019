@@ -1,4 +1,4 @@
-extends Sprite
+extends Node2D
 
 const Shrimp = preload("res://Actors/Shrimp/Shrimp.tscn")
 
@@ -19,15 +19,17 @@ var shrimp_ring_positions = [] #target positions relative to cursor
 onready var rand_timer = $RandomizerTimer
 
 onready var  TopLevel = get_node('/root').get_child(get_node('/root').get_child_count() - 1)
+const cursor_tex = preload("res://Actors/Shrimp/Sprite/tempCenter.png")
 
 func  _ready():
 	pass
 
 func _draw():
-	var tex = load("res://Actors/Shrimp/Sprite/tempCenter.png")
-	draw_texture(tex, get_local_mouse_position() - Vector2(tex.get_width() / 2, tex.get_height() / 2))
-	#for pos in shrimp_ring_positions:
-	#	draw_circle(pos,shrimp_size/2,Color(0,0,1,0.3))
+	draw_texture(
+		cursor_tex, 
+		get_local_mouse_position() - Vector2(cursor_tex.get_width() / 2, 
+		cursor_tex.get_height() / 2)
+	)
 
 func _input(event):
 	update()
@@ -43,6 +45,14 @@ func _input(event):
 				rand_timer.start()
 			elif (!event.pressed):
 				rand_timer.stop()
+		
+		update_ring_positions()
+		update_shrimp_targets()
+	
+	if (event.is_action("ui_cancel")):
+		var thisShrimp = remove_shrimp(get_outer_shrimp())
+		if (thisShrimp != null):
+			thisShrimp.queue_free()
 		
 		update_ring_positions()
 		update_shrimp_targets()
@@ -77,6 +87,36 @@ func add_shrimp():
 	if (shrimp.size()>=totalRingCapacity):
 		append_ring_capacity()
 
+#removes shrimp at index
+func remove_shrimp(var index):
+	if (shrimp.size()<=0):
+		return
+	
+	#print("Removing shrimp")
+	var thisShrimp = shrimp[index]
+	shrimp.remove(index)
+	return thisShrimp
+
+#returns index of farthest shrimp from crab position
+func get_outer_shrimp():
+	var crab = get_parent()
+	
+	var bestDistance = 0
+	var bestIndex = -1
+	
+	for i in shrimp.size():
+		var thisShrimp = shrimp[i]
+		var thisDistance = crab.global_position.distance_to(thisShrimp.global_position)
+		
+		print(thisDistance)
+		
+		if (thisDistance>bestDistance):
+			bestDistance = thisDistance
+			bestIndex = i
+	
+	return bestIndex
+
+#randomizes shrimp indexes for swarming
 func randomize_shrimp():
 	var doubleShrimp = shrimp.duplicate()
 	shrimp.clear()
@@ -87,7 +127,6 @@ func randomize_shrimp():
 		doubleShrimp.remove(randIndex)
 		
 		shrimp.push_back(thisShrimp)
-	
 
 #assigns target positions to shrimp based on their indexes
 func update_shrimp_targets():
@@ -132,7 +171,3 @@ func calculate_ring_capacity(var ringIndex):
 	var ringCircumference = 2*PI*ringRadius
 	
 	return (ringCircumference / shrimp_size)
-
-func _on_RandomizerTimer_timeout():
-	
-	pass # replace with function body

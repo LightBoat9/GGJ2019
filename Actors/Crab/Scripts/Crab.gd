@@ -9,8 +9,9 @@ var maxmovespeed = 5
 var velocity = Vector2()
 
 func _draw():
-	draw_circle(Vector2(), aoi_radius, Color(0, 0, 0, 0.3))
-	
+	#draw_circle(Vector2(), aoi_radius, Color(0, 0, 0, 0.3))
+	pass
+
 func _physics_process(delta):
 	handle_movement(delta)
 	
