@@ -13,7 +13,7 @@ radius = 16.0
 custom_solver_bias = 0.0
 radius = 16.0
 
-[node name="Shrimp" type="KinematicBody2D"]
+[node name="Shrimp" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 0
@@ -53,5 +53,12 @@ process_mode = 1
 wait_time = 0.1
 one_shot = true
 autostart = true
+
+[node name="KnockbackTimer" type="Timer" parent="." index="4"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
 
 
