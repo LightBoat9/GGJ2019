@@ -23,6 +23,7 @@ window/stretch/aspect="keep"
 [layer_names]
 
 2d_physics/layer_1="It's Walls"
+2d_physics/layer_2="Shrimpless"
 
 [rendering]
 
