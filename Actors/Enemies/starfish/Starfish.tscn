@@ -60,6 +60,8 @@ wait_time = 1.0
 one_shot = true
 autostart = false
 
+[node name="Dead" type="Node" parent="StateMachine" index="2"]
+
 [node name="Sprite" type="Sprite" parent="." index="1"]
 
 texture = ExtResource( 5 )

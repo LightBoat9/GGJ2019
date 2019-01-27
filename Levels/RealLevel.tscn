@@ -55,7 +55,6 @@ scale = Vector2( 1.55143, 1.53034 )
 
 position = Vector2( -248.109, 430.349 )
 rotation = 0.231324
-scale = Vector2( 1, 1 )
 
 [node name="bigRock2" parent="Rocks" index="3" instance=ExtResource( 2 )]
 
@@ -127,31 +126,26 @@ scale = Vector2( -0.938299, 1 )
 
 position = Vector2( 1260.54, 517.277 )
 rotation = 2.08118
-scale = Vector2( 1, 1 )
 
 [node name="bigRock6" parent="Rocks" index="17" instance=ExtResource( 2 )]
 
 position = Vector2( 2900.5, -134.979 )
 rotation = 2.08118
-scale = Vector2( 1, 1 )
 
 [node name="bigRock7" parent="Rocks" index="18" instance=ExtResource( 2 )]
 
 position = Vector2( 2142.05, -584.428 )
 rotation = 0.894797
-scale = Vector2( 1, 1 )
 
 [node name="L-pieceRock2" parent="Rocks" index="19" instance=ExtResource( 4 )]
 
 position = Vector2( 1761.96, 12.2673 )
 rotation = 2.94228
-scale = Vector2( 1, 1 )
 
 [node name="L-pieceRock3" parent="Rocks" index="20" instance=ExtResource( 4 )]
 
 position = Vector2( 1999.43, 1013.75 )
 rotation = 2.72663
-scale = Vector2( 1, 1 )
 
 [node name="smallRock3" parent="Rocks" index="21" instance=ExtResource( 3 )]
 

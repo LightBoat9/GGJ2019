@@ -10,9 +10,9 @@ config_version=3
 
 [application]
 
-config/name="GGJ2019"
-run/main_scene="res://Levels/LevelTest.tscn"
-config/icon="res://icon.png"
+config/name="25 Piece Shrimp Meal Organic Fresh Caught"
+run/main_scene="res://Levels/RealLevel.tscn"
+config/icon="res://Actors/Crab/Sprites/crabby.png"
 
 [display]
 
