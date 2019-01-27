@@ -37,15 +37,20 @@ func _input(event):
 		update_position()
 	
 	if event is InputEventMouseButton:
-		if (event.button_index == BUTTON_LEFT):
-			add_shrimp()
+		if (event.button_index == BUTTON_LEFT && event.pressed):
+			launch_shrimp(get_outer_shrimp())
 		elif (event.button_index == BUTTON_RIGHT):
 			if (event.pressed):
 				randomize_shrimp()
 				rand_timer.start()
 			elif (!event.pressed):
 				rand_timer.stop()
-		
+			
+			update_ring_positions()
+			update_shrimp_targets()
+	
+	if (event.is_action("ui_accept")):
+		add_shrimp()
 		update_ring_positions()
 		update_shrimp_targets()
 	
@@ -97,6 +102,19 @@ func remove_shrimp(var index):
 	shrimp.remove(index)
 	return thisShrimp
 
+#launches shrimp at index towards cursor
+func launch_shrimp(var index):
+	if (shrimp.size()<=0):
+		return
+	
+	var thisShrimp = remove_shrimp(index)
+	var launchDirection = get_global_mouse_position() - thisShrimp.global_position
+	
+	thisShrimp.target_position = null
+	thisShrimp.velocity = launchDirection.clamped(thisShrimp.maxSpeed)
+	
+	print(thisShrimp.velocity)
+
 #returns index of farthest shrimp from crab position
 func get_outer_shrimp():
 	var crab = get_parent()
@@ -107,8 +125,6 @@ func get_outer_shrimp():
 	for i in shrimp.size():
 		var thisShrimp = shrimp[i]
 		var thisDistance = crab.global_position.distance_to(thisShrimp.global_position)
-		
-		print(thisDistance)
 		
 		if (thisDistance>bestDistance):
 			bestDistance = thisDistance
