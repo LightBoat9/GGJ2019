@@ -15,7 +15,7 @@ var launchDamage = 0.25
 var enemy_touching
 var shrimp_cursor = null
 
-enum States { DEFAULT, ATACKING, LAUNCHING } 
+enum States { DEFAULT, LAUNCHING } 
 var state = States.DEFAULT
 
 onready var area = $Area2D
@@ -34,7 +34,7 @@ func _ready():
 	maxSpin += rand_range(-0.05,0.05)
 
 func _process(delta):
-	if enemy_touching and attack_timer.time_left == 0:
+	if enemy_touching and attack_timer.time_left == 0 and Input.is_mouse_button_pressed(BUTTON_RIGHT):
 		enemy_touching.shrimpInteract(swarmDamage)
 		attack_timer.start()
 
