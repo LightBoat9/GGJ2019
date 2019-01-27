@@ -121,6 +121,7 @@ func _lungeStop():
 		
 		if (eat.is_in_group("Shrimp")):
 			eat.kill_shrimp(dir)
+			eatRange.remove(eatRange.find(eat))
 			
 		if eat.is_in_group("Crab"):
 			eat.take_damage(1)
@@ -131,8 +132,6 @@ func _lungeStop():
 	velocity = Vector2()
 	state = States.PURSUING
 	sprite.texture = tex_default
-	
-	eatRange.clear()
 
 func _set_image_angle(var dir):
 	var angle = rad2deg(dir.angle())

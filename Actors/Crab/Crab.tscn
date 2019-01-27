@@ -11,7 +11,7 @@
 custom_solver_bias = 0.0
 radius = 32.0
 
-[node name="Crab" type="KinematicBody2D" index="0"]
+[node name="Crab" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 0
