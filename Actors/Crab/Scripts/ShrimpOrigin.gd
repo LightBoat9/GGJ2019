@@ -87,10 +87,25 @@ func add_shrimp():
 	inst.global_position = global_position - Vector2(100, 100)
 	shrimp.append(inst)
 	TopLevel.add_child(inst)
-	
+	inst.shrimp_cursor = self
 	
 	if (shrimp.size()>=totalRingCapacity):
 		append_ring_capacity()
+
+func add_shrimp_existing(var thisShrimp):
+	if (shrimp.size()>=max_shrimp):
+		return
+	
+	shrimp.append(thisShrimp)
+	thisShrimp.shrimp_cursor = self
+	
+	if (shrimp.size()>=totalRingCapacity):
+		append_ring_capacity()
+	
+	update_ring_positions()
+	update_shrimp_targets()
+	
+	pass
 
 #removes shrimp at index
 func remove_shrimp(var index):
@@ -108,10 +123,10 @@ func launch_shrimp(var index):
 		return
 	
 	var thisShrimp = remove_shrimp(index)
-	var launchDirection = get_global_mouse_position() - thisShrimp.global_position
+	thisShrimp.launch(get_global_mouse_position())
 	
-	thisShrimp.target_position = null
-	thisShrimp.velocity = launchDirection.clamped(thisShrimp.maxSpeed)
+	update_ring_positions()
+	update_shrimp_targets()
 	
 	print(thisShrimp.velocity)
 
@@ -119,14 +134,18 @@ func launch_shrimp(var index):
 func get_outer_shrimp():
 	var crab = get_parent()
 	
+	
+	var maxCursorDistance = padding_per_ring * ringCapacity.size() + 5
 	var bestDistance = 0
 	var bestIndex = -1
 	
 	for i in shrimp.size():
 		var thisShrimp = shrimp[i]
 		var thisDistance = crab.global_position.distance_to(thisShrimp.global_position)
+		var thisCursorDistance = thisShrimp.global_position.distance_to(global_position)
 		
-		if (thisDistance>bestDistance):
+		
+		if (thisCursorDistance <= maxCursorDistance && thisDistance>bestDistance):
 			bestDistance = thisDistance
 			bestIndex = i
 	
