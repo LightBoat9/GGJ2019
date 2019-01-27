@@ -25,12 +25,14 @@ const cursor_tex = preload("res://Actors/Shrimp/Sprite/tempCenter.png")
 func  _ready():
 	pass
 
+"""
 func _draw():
 	draw_texture(
 		cursor_tex, 
 		get_local_mouse_position() - Vector2(cursor_tex.get_width() / 2, 
 		cursor_tex.get_height() / 2)
 	)
+"""
 
 func _input(event):
 	update()

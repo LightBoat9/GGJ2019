@@ -20,8 +20,10 @@ var launchDamage = 0.25
 var enemy_touching
 var shrimp_cursor = null
 
-enum States { DEFAULT, LAUNCHING, KNOCKBACK } 
-var state = States.DEFAULT
+enum States { IDLE, DEFAULT, LAUNCHING, KNOCKBACK } 
+export(States) var state = 1
+
+var idle_pickup_distance = 64
 
 onready var area = $Area2D
 onready var attack_timer = $AttackTimer
@@ -54,6 +56,12 @@ func _process(delta):
 	if state == States.KNOCKBACK and knockback_timer.time_left == 0:
 		state = States.LAUNCHING
 		_return_to_cursor()
+		
+	var crab = get_tree().get_nodes_in_group("Crab")[0]
+	if crab and state == States.IDLE and not self in crab.get_node('ShrimpOrigin').shrimp:
+		if global_position.distance_to(crab.global_position) <= idle_pickup_distance:
+			state = States.DEFAULT
+			crab.get_node('ShrimpOrigin').add_shrimp_existing(self)
 
 func _physics_process(delta):
 	if (state == States.LAUNCHING):
@@ -66,10 +74,11 @@ func _physics_process(delta):
 	
 	rotation += lerp(minSpin, maxSpin, velocityMag/maxSpeed)
 	
-	if state != States.KNOCKBACK:
-		move_and_slide(velocity/delta)
-	else:
-		move_and_slide(knockback_velocity / delta)
+	if state != States.IDLE:
+		if state != States.KNOCKBACK:
+			move_and_slide(velocity/delta)
+		else:
+			move_and_slide(knockback_velocity / delta)
 	
 	if (state == States.LAUNCHING && get_slide_count()>0):
 		var slideCollide = get_slide_collision(get_slide_count()-1)
@@ -106,7 +115,7 @@ func kill_shrimp(anglev=Vector2()):
 	get_parent().add_child(inst)
 	
 	emit_signal("ImDead")
-	emit_signal("ImDead", self)
+	#emit_signal("ImDead", self)
 	
 	if self in shrimp_cursor.shrimp:
 		shrimp_cursor.remove_shrimp(shrimp_cursor.shrimp.find(self))

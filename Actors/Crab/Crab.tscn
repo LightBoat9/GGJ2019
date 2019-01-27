@@ -11,7 +11,7 @@
 custom_solver_bias = 0.0
 radius = 32.0
 
-[node name="Crab" type="KinematicBody2D"]
+[node name="Crab" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 0
@@ -22,7 +22,7 @@ _sections_unfolded = [ "Collision" ]
 
 [node name="GUI" type="Node2D" parent="." index="0"]
 
-z_index = 1
+z_index = 5
 z_as_relative = false
 script = ExtResource( 2 )
 _sections_unfolded = [ "Transform", "Z Index" ]

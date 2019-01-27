@@ -5,8 +5,8 @@ var healthCircle_sections = 30
 var healthCircle_radius = 32
 var healthCircle_padding = 8
 var healthCircle_offset = Vector2(
-		OS.window_size.x/2 - healthCircle_radius - healthCircle_padding, 
-		OS.window_size.y/2 - (healthCircle_radius + healthCircle_padding)
+		1024/2 - healthCircle_radius - healthCircle_padding, 
+		600/2 - (healthCircle_radius + healthCircle_padding)
 	)
 	
 var score = 999 setget set_score
@@ -25,7 +25,7 @@ func _draw():
 	if (healthCircle.size()>=3):
 		draw_colored_polygon(healthCircle, Color(0,0.4,1))
 		
-	draw_string(load("res://Fonts/font.tres"), Vector2(-OS.window_size.x/2 + 8, OS.window_size.y/2 - 8), str(score))
+	draw_string(load("res://Fonts/font.tres"), Vector2(-1024/2 + 8, 600/2 - 8), str(score))
 	
 func generate_healthCircle():
 	var offset = healthCircle_offset
