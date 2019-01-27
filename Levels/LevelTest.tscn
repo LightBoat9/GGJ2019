@@ -1,15 +1,16 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Actors/Crab/Crab.tscn" type="PackedScene" id=1]
 [ext_resource path="res://icon.png" type="Texture" id=2]
-[ext_resource path="res://Actors/Enemies/debugEnemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Actors/Enemies/goby/Goby.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Actors/Enemies/debugEnemy.tscn" type="PackedScene" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
 
-[node name="LevelTest" type="Node2D"]
+[node name="LevelTest" type="Node2D" index="0"]
 
 [node name="Crab" parent="." index="0" instance=ExtResource( 1 )]
 
@@ -37,10 +38,12 @@ texture = ExtResource( 2 )
 position = Vector2( 539.883, 241.569 )
 shape = SubResource( 1 )
 
-[node name="BaseEnemy" parent="." index="2" instance=ExtResource( 3 )]
+[node name="Goby" parent="." index="2" instance=ExtResource( 3 )]
 
-position = Vector2( 403, 382 )
-collision_layer = 2
-_sections_unfolded = [ "Collision" ]
+position = Vector2( 268.086, 348.57 )
+
+[node name="BaseEnemy" parent="." index="3" instance=ExtResource( 4 )]
+
+position = Vector2( 440.522, 357.551 )
 
 

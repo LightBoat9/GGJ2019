@@ -22,6 +22,7 @@ var healthCircle_radius = 16
 var healthCircle_offset = Vector2(0,-48)
 
 func _ready():
+	
 	#public relations
 	add_to_group("Enemies")
 	health = maxHealth

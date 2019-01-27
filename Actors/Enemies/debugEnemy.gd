@@ -1,8 +1,5 @@
 extends "res://Actors/Enemies/baseEnemy.gd"
 
-func _ready():
-	._ready()
-
 func _physics_process(delta):
 	var inputVector = Vector2(0,0)
 	
