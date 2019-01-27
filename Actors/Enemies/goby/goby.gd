@@ -78,7 +78,7 @@ func _pursuing_check():
 	
 	if (dist>sightLimit_exit):
 		state = States.DEFAULT
-		if (target.is_connected("ImDead",self,"_targetIsDead")):
+		if (target.is_in_group("Shrimp") and target.is_connected("ImDead",self,"_targetIsDead")):
 				target.disconnect("ImDead",self,"_targetIsDead")
 		target = null
 		
@@ -124,6 +124,9 @@ func _lungeStop():
 			
 		if eat.is_in_group("Crab"):
 			eat.take_damage(1)
+			var angle = eat.global_position.angle_to_point(global_position)
+			var vangle = Vector2(cos(angle), sin(angle))
+			eat.knockback(vangle * 10, 0.2)
 	
 	velocity = Vector2()
 	state = States.PURSUING

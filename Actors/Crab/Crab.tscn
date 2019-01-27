@@ -11,7 +11,7 @@
 custom_solver_bias = 0.0
 radius = 32.0
 
-[node name="Crab" type="KinematicBody2D"]
+[node name="Crab" type="KinematicBody2D" index="0"]
 
 input_pickable = false
 collision_layer = 0
@@ -91,6 +91,13 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 _sections_unfolded = [ "custom_fonts" ]
+
+[node name="KnockbackTimer" type="Timer" parent="." index="6"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
 
 [connection signal="timeout" from="ShrimpOrigin/RandomizerTimer" to="ShrimpOrigin" method="randomize_shrimp"]
 
