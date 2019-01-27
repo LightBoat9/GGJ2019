@@ -118,10 +118,12 @@ func kockback(velocity, duration, stun_duration=0):
 			launch_timer.stop()
 
 func kill_shrimp(anglev=Vector2()):
+	"""
 	var inst = DeathParticles.instance()
 	inst.global_position = global_position
 	inst.rotation = anglev.angle()
 	get_parent().add_child(inst)
+	"""
 	
 	#emit_signal("ImDead")
 	emit_signal("ImDead", self)
