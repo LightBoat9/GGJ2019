@@ -62,7 +62,7 @@ func _default_check():
 			state = States.PURSUING
 			target = node
 			
-			if (!target.is_connected("ImDead",self,"_targetIsDead")):
+			if (target.is_in_group("Shrimp") and !target.is_connected("ImDead",self,"_targetIsDead")):
 				target.connect("ImDead",self,"_targetIsDead")
 			
 			#print("Targeting "+str(node))
@@ -121,8 +121,9 @@ func _lungeStop():
 		
 		if (eat.is_in_group("Shrimp")):
 			eat.kill_shrimp(dir)
-		
-		pass
+			
+		if eat.is_in_group("Crab"):
+			eat.take_damage(1)
 	
 	velocity = Vector2()
 	state = States.PURSUING
