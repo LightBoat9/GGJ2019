@@ -9,7 +9,7 @@ var maxmovespeed = 5
 var velocity = Vector2()
 
 
-onready var gui_draw = $GUI/CustomDraw
+onready var gui_draw = $CustomDraw
 var health = 5
 var maxHealth = 5
 		

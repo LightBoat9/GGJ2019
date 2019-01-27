@@ -5,11 +5,11 @@ var healthCircle_sections = 30
 var healthCircle_radius = 32
 var healthCircle_padding = 8
 var healthCircle_offset = Vector2(
-		OS.window_size.x - healthCircle_radius - healthCircle_padding, 
-		healthCircle_radius + healthCircle_padding
+		OS.window_size.x/2 - healthCircle_radius - healthCircle_padding, 
+		healthCircle_radius + healthCircle_padding - OS.window_size.y/2
 	)
 
-onready var crab = get_parent().get_parent()
+onready var crab = get_parent()
 
 func _ready():
 	generate_healthCircle()
