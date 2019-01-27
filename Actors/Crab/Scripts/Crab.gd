@@ -35,6 +35,9 @@ func take_damage(var damage):
 		
 		health = max(health - damage, 0)
 		
+		if health <= 0:
+			get_tree().reload_current_scene()
+		
 		gui_draw.generate_healthCircle()
 
 func _physics_process(delta):
