@@ -93,6 +93,7 @@ func _launch_update():
 	var targetProjection = 0 if (targetMag == 0) else velocity.dot(to_target)/targetMag
 	
 	if (targetProjection<=0):
+		print("projection return")
 		_return_to_cursor()
 
 func _return_to_cursor():

@@ -1,16 +1,15 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Actors/Crab/Scripts/Crab.gd" type="Script" id=1]
-[ext_resource path="res://Actors/Crab/Scripts/CustomDraw.gd" type="Script" id=2]
-[ext_resource path="res://Actors/Crab/Sprites/temp.png" type="Texture" id=3]
-[ext_resource path="res://Actors/Crab/Scripts/ShrimpOrigin.gd" type="Script" id=4]
+[ext_resource path="res://Actors/Crab/Sprites/temp.png" type="Texture" id=2]
+[ext_resource path="res://Actors/Crab/Scripts/ShrimpOrigin.gd" type="Script" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 32.0
 
-[node name="Crab" type="KinematicBody2D" index="0"]
+[node name="Crab" type="KinematicBody2D"]
 
 input_pickable = false
 collision_layer = 0
@@ -19,30 +18,15 @@ collision/safe_margin = 0.08
 script = ExtResource( 1 )
 _sections_unfolded = [ "Collision" ]
 
-[node name="CustomDraw" type="Node2D" parent="." index="0"]
-
-z_index = 1
-z_as_relative = false
-script = ExtResource( 2 )
-_sections_unfolded = [ "Z Index" ]
-
-[node name="GUI" type="CanvasLayer" parent="." index="1"]
-
-layer = 1
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
 
 shape = SubResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="." index="3"]
+[node name="Sprite" type="Sprite" parent="." index="1"]
 
-texture = ExtResource( 3 )
+texture = ExtResource( 2 )
 
-[node name="Camera2D" type="Camera2D" parent="." index="4"]
+[node name="Camera2D" type="Camera2D" parent="." index="2"]
 
 anchor_mode = 1
 rotating = false
@@ -67,13 +51,10 @@ editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
 
-[node name="ShrimpOrigin" type="Node2D" parent="." index="5"]
+[node name="ShrimpOrigin" type="Node2D" parent="." index="3"]
 
 position = Vector2( 43.6422, -43.6197 )
-z_index = 1
-z_as_relative = false
-script = ExtResource( 4 )
-_sections_unfolded = [ "Z Index" ]
+script = ExtResource( 3 )
 
 [node name="RandomizerTimer" type="Timer" parent="ShrimpOrigin" index="0"]
 
