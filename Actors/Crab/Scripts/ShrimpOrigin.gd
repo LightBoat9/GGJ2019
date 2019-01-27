@@ -89,7 +89,6 @@ func add_shrimp():
 	
 	var inst = Shrimp.instance()
 	inst.global_position = global_position - Vector2(100, 100)
-	inst.origin = self
 	shrimp.append(inst)
 	TopLevel.add_child(inst)
 	inst.shrimp_cursor = self

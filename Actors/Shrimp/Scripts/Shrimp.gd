@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+const DeathParticles = preload('res://Actors/Shrimp/DeathParticles.tscn')
+
 var target_position = null
 var velocity = Vector2()
 
@@ -20,8 +22,6 @@ var state = States.DEFAULT
 
 onready var area = $Area2D
 onready var attack_timer = $AttackTimer
-
-var origin
 
 func _ready():
 	add_to_group("Players")
@@ -59,6 +59,7 @@ func _physics_process(delta):
 			var collider = slideCollide.collider
 			
 			if collider.get_collision_layer_bit(0):
+				kill_shrimp()
 				print("Cool")
 				_return_to_cursor()
 	
@@ -69,8 +70,18 @@ func assign_target(var targ):
 	target_position = targ
 	update()
 	
-func kill_shrimp():
-	origin.remove_shrimp(origin.shrimp.find(self))
+func kill_shrimp(anglev=Vector2()):
+	var inst = DeathParticles.instance()
+	inst.global_position = global_position
+	inst.rotation = anglev.angle()
+	get_parent().add_child(inst)
+	
+	
+	if self in shrimp_cursor.shrimp:
+		shrimp_cursor.remove_shrimp(shrimp_cursor.shrimp.find(self))
+		
+	shrimp_cursor = null
+		
 	queue_free()
 
 func velocity_to_target():
