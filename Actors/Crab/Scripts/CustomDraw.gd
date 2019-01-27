@@ -13,6 +13,12 @@ var score = 0 setget set_score
 
 onready var crab = get_parent()
 
+func _input(event):
+	if event is InputEventKey:
+		if event.scancode == KEY_F:
+			if event.pressed:
+				OS.window_fullscreen = !OS.window_fullscreen
+
 func _ready():
 	generate_healthCircle()
 

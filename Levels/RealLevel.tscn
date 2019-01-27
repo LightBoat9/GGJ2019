@@ -15,7 +15,7 @@
 [ext_resource path="res://Levels/level_pieces/tableCoral.png" type="Texture" id=13]
 [ext_resource path="res://Levels/level_pieces/bushCoral.png" type="Texture" id=14]
 
-[node name="RealLevel" type="Node2D" index="0"]
+[node name="RealLevel" type="Node2D"]
 
 [node name="sand" type="ColorRect" parent="." index="0"]
 
