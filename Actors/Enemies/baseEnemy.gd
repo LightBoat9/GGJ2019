@@ -9,8 +9,8 @@ var state
 
 # Graphics
 var mySprite
-var tex_idle
-var tex_dead
+onready var tex_idle = load("res://Actors/Enemies/debugEnemy.png")
+onready var tex_dead = load("res://Actors/Enemies/debugEnemy_dead.png")
 
 # Stats
 var shrimpValue = 2
@@ -29,7 +29,6 @@ func _ready():
 	
 	#graphics
 	mySprite = get_node("Sprite")
-	_loadTextures()
 	generate_healthCircle(healthCircle_offset,healthCircle_radius)
 
 #general function to call when a shrimp interacts with this enemy
@@ -63,22 +62,6 @@ func _consume():
 	queue_free()
 	return shrimpValue
 
-#call when notable changes occur (mainly state changes)
-func _updateGraphics():
-	var newTex = null
-	
-	if (health<=0):
-		print("Switching to Dead Sprite")
-		newTex = tex_dead
-	
-	if (newTex != null):
-		mySprite.texture = newTex
-
-#override this to change what textures get loaded and where, etc.
-func _loadTextures():
-	tex_idle = load("res://Actors/Enemies/debugEnemy.png")
-	tex_dead = load("res://Actors/Enemies/debugEnemy_dead.png")
-
 func generate_healthCircle(var offset, var radius):
 	#empty healthCircle
 	healthCircle.resize(0)
@@ -94,7 +77,7 @@ func generate_healthCircle(var offset, var radius):
 		healthCircle.append(offset+Vector2(cos(radian),-sin(radian))*radius)
 
 func _draw():
-	if (health>0):
+	if (health>0 && health<maxHealth):
 		draw_circle(healthCircle_offset,healthCircle_radius+1,Color(0,0,0))
 		if (healthCircle.size()>=3):
 			draw_colored_polygon(healthCircle, Color(0,1,0))

@@ -62,7 +62,7 @@ func _input(event):
 		if (shrimpIndex!=-1):
 			var thisShrimp = remove_shrimp(shrimpIndex)
 			if (thisShrimp != null):
-				thisShrimp.queue_free()
+				thisShrimp.kill_shrimp()
 
 func _process(delta):
 	update_position()

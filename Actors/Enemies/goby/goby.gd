@@ -24,12 +24,15 @@ onready var biteCollider = $Sprite/Area2D
 var maxEats = 5
 var eatRange = []
 
-onready var tex_default = load("res://Actors/Enemies/debugEnemy.png")
-onready var tex_anticipation = load("res://Actors/Enemies/debugEnemy_anticipation.png")
-onready var tex_lunge = load("res://Actors/Enemies/debugEnemy_lunge.png")
+onready var tex_default = load("res://Actors/Enemies/goby/goby1.png")
+onready var tex_anticipation = load("res://Actors/Enemies/goby/goby3.png")
+onready var tex_lunge = load("res://Actors/Enemies/goby/goby4.png")
+
 
 func _ready():
 	state = States.DEFAULT
+	
+	tex_dead = load("res://Actors/Enemies/goby/goby2.png")
 
 func _physics_process(delta):
 	if (health>0):
@@ -44,7 +47,7 @@ func _physics_process(delta):
 		move_and_slide(velocity/delta)
 
 func _die():
-	._die()
+	sprite.texture = tex_dead
 	
 	anticipationTimer.stop()
 	lungeTimer.stop()
