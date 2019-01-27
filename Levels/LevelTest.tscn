@@ -11,7 +11,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
 
-[node name="LevelTest" type="Node2D" index="0"]
+[node name="LevelTest" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="." index="0"]
 

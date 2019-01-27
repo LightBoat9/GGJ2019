@@ -26,6 +26,9 @@ var state = States.DEFAULT
 onready var area = $Area2D
 onready var attack_timer = $AttackTimer
 onready var knockback_timer = $KnockbackTimer
+onready var launch_timer = $LaunchTimer
+
+var launch_passed = false
 
 func _ready():
 	add_to_group("Players")
@@ -76,6 +79,7 @@ func _physics_process(delta):
 			
 			if collider.get_collision_layer_bit(0):
 				kockback(slideCollide.normal * 5, 0.2)
+				launch_timer.stop()
 				_return_to_cursor()
 	
 	
@@ -91,7 +95,10 @@ func kockback(velocity, duration):
 		knockback_velocity = velocity
 		knockback_timer.wait_time = duration
 		knockback_timer.start()
-	
+		
+		if (!launch_timer.is_stopped()):
+			launch_timer.stop()
+
 func kill_shrimp(anglev=Vector2()):
 	var inst = DeathParticles.instance()
 	inst.global_position = global_position
@@ -128,6 +135,8 @@ func launch(var to):
 	velocity = launchDirection.normalized() * launchSpeed
 	target_position = to
 	state = States.LAUNCHING
+	launch_passed = false
+	launch_timer.start()
 
 func _launch_update():
 	var to_target = target_position - global_position
@@ -136,7 +145,12 @@ func _launch_update():
 	var targetProjection = 0 if (targetMag == 0) else velocity.dot(to_target)/targetMag
 	
 	if (targetProjection<=0):
-		#print("projection return")
+		launch_passed = true
+		if launch_timer.is_stopped():
+			_return_to_cursor()
+
+func _launch_timer_up():
+	if launch_passed:
 		_return_to_cursor()
 
 func _return_to_cursor():
@@ -153,6 +167,8 @@ func _body_entered(body):
 			
 			if (spawn>0):
 				_spawn_shrimp(spawn)
+			
+			launch_timer.stop()
 			
 			_return_to_cursor()
 
