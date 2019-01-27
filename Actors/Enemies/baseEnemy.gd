@@ -32,7 +32,7 @@ func _ready():
 	generate_healthCircle(healthCircle_offset,healthCircle_radius)
 
 #general function to call when a shrimp interacts with this enemy
-func _shrimpInteract(var shrimpPower):
+func shrimpInteract(var shrimpPower):
 	if (health > 0):
 		_takeDamage(shrimpPower)
 		return 0

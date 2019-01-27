@@ -4,9 +4,6 @@ func _ready():
 	._ready()
 
 func _physics_process(delta):
-	if (Input.is_action_just_pressed("ui_accept")):
-		_shrimpInteract(1)
-	
 	var inputVector = Vector2(0,0)
 	
 	if (Input.is_action_pressed("ui_left")):
