@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/averageRock.png-37bb38e96ab4a34f997366aded3dfa45.stex"
+path="res://.import/bushCoral.png-fdba2f66b448d8ddbd427de26d30f2bc.stex"
 
 [deps]
 
-source_file="res://Levels/level_pieces/averageRock.png"
-dest_files=[ "res://.import/averageRock.png-37bb38e96ab4a34f997366aded3dfa45.stex" ]
+source_file="res://Levels/level_pieces/bushCoral.png"
+dest_files=[ "res://.import/bushCoral.png-fdba2f66b448d8ddbd427de26d30f2bc.stex" ]
 
 [params]
 

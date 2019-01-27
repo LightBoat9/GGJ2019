@@ -1,0 +1,262 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Levels/level_pieces/averageRock.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Levels/level_pieces/bigRock.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Levels/level_pieces/smallRock.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Levels/level_pieces/L-pieceRock.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Levels/level_pieces/mediumRock.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Levels/level_pieces/beanRock.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Actors/Crab/Crab.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Actors/Shrimp/Shrimp.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Actors/Enemies/Anemone.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Actors/Enemies/goby/Goby.tscn" type="PackedScene" id=10]
+
+[node name="RealLevel" type="Node2D" index="0"]
+
+[node name="sand" type="ColorRect" parent="." index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -930.0
+margin_top = -1319.0
+margin_right = 4267.0
+margin_bottom = 1767.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+color = Color( 0.601563, 0.56558, 0.272583, 1 )
+
+[node name="Rocks" type="Node2D" parent="." index="1"]
+
+editor/display_folded = true
+
+[node name="averageRock2" parent="Rocks" index="0" instance=ExtResource( 1 )]
+
+position = Vector2( 360.845, 507.311 )
+rotation = 3.12702
+scale = Vector2( 1.09757, 1.12679 )
+
+[node name="averageRock7" parent="Rocks" index="1" instance=ExtResource( 1 )]
+
+position = Vector2( 3254.5, 422.76 )
+rotation = 2.39763
+scale = Vector2( 1.55143, 1.53034 )
+
+[node name="bigRock" parent="Rocks" index="2" instance=ExtResource( 2 )]
+
+position = Vector2( -248.109, 430.349 )
+rotation = 0.231324
+scale = Vector2( 1, 1 )
+
+[node name="bigRock2" parent="Rocks" index="3" instance=ExtResource( 2 )]
+
+position = Vector2( -503.15, 895.88 )
+rotation = 2.30927
+scale = Vector2( 1.19052, 1.19052 )
+
+[node name="averageRock" parent="Rocks" index="4" instance=ExtResource( 1 )]
+
+position = Vector2( 60.9762, 81.0825 )
+rotation = 0.231324
+
+[node name="smallRock" parent="Rocks" index="5" instance=ExtResource( 3 )]
+
+position = Vector2( 656.775, 409.259 )
+
+[node name="smallRock2" parent="Rocks" index="6" instance=ExtResource( 3 )]
+
+position = Vector2( -37.2466, 572.555 )
+
+[node name="smallRock4" parent="Rocks" index="7" instance=ExtResource( 3 )]
+
+position = Vector2( 2789.64, 578.845 )
+rotation = 1.05424
+scale = Vector2( 1.34844, 1.34844 )
+
+[node name="L-pieceRock" parent="Rocks" index="8" instance=ExtResource( 4 )]
+
+position = Vector2( 547.366, -160.346 )
+rotation = -0.798878
+
+[node name="mediumRock" parent="Rocks" index="9" instance=ExtResource( 5 )]
+
+position = Vector2( 28.2446, 700.809 )
+
+[node name="mediumRock2" parent="Rocks" index="10" instance=ExtResource( 5 )]
+
+position = Vector2( -495.001, 20.024 )
+rotation = 0.988774
+scale = Vector2( 1.42228, 1.42228 )
+
+[node name="beanRock" parent="Rocks" index="11" instance=ExtResource( 6 )]
+
+position = Vector2( 852.171, 4.043 )
+
+[node name="averageRock3" parent="Rocks" index="12" instance=ExtResource( 1 )]
+
+position = Vector2( 1231.54, -22.12 )
+rotation = 0.749309
+
+[node name="averageRock6" parent="Rocks" index="13" instance=ExtResource( 1 )]
+
+position = Vector2( 2394.73, 85.2873 )
+rotation = 0.542806
+scale = Vector2( 1.28999, 1.2737 )
+
+[node name="averageRock4" parent="Rocks" index="14" instance=ExtResource( 1 )]
+
+position = Vector2( 1005.89, 382.848 )
+rotation = -2.51401
+
+[node name="averageRock5" parent="Rocks" index="15" instance=ExtResource( 1 )]
+
+position = Vector2( 1662.29, 735.714 )
+rotation = -3.0186
+scale = Vector2( -0.938299, 1 )
+
+[node name="bigRock3" parent="Rocks" index="16" instance=ExtResource( 2 )]
+
+position = Vector2( 1260.54, 517.277 )
+rotation = 2.08118
+scale = Vector2( 1, 1 )
+
+[node name="bigRock6" parent="Rocks" index="17" instance=ExtResource( 2 )]
+
+position = Vector2( 2900.5, -134.979 )
+rotation = 2.08118
+scale = Vector2( 1, 1 )
+
+[node name="bigRock7" parent="Rocks" index="18" instance=ExtResource( 2 )]
+
+position = Vector2( 2142.05, -584.428 )
+rotation = 0.894797
+scale = Vector2( 1, 1 )
+
+[node name="L-pieceRock2" parent="Rocks" index="19" instance=ExtResource( 4 )]
+
+position = Vector2( 1761.96, 12.2673 )
+rotation = 2.94228
+scale = Vector2( 1, 1 )
+
+[node name="L-pieceRock3" parent="Rocks" index="20" instance=ExtResource( 4 )]
+
+position = Vector2( 1999.43, 1013.75 )
+rotation = 2.72663
+scale = Vector2( 1, 1 )
+
+[node name="smallRock3" parent="Rocks" index="21" instance=ExtResource( 3 )]
+
+position = Vector2( 1630.85, 235.427 )
+
+[node name="mediumRock3" parent="Rocks" index="22" instance=ExtResource( 5 )]
+
+position = Vector2( 1520.28, -68.2276 )
+
+[node name="mediumRock6" parent="Rocks" index="23" instance=ExtResource( 5 )]
+
+position = Vector2( 3191.57, -23.7056 )
+
+[node name="mediumRock5" parent="Rocks" index="24" instance=ExtResource( 5 )]
+
+position = Vector2( 2990.1, 810.073 )
+scale = Vector2( 1.6727, 1.6727 )
+
+[node name="mediumRock7" parent="Rocks" index="25" instance=ExtResource( 5 )]
+
+position = Vector2( 777.964, 887.323 )
+scale = Vector2( 1.6727, 1.6727 )
+
+[node name="mediumRock4" parent="Rocks" index="26" instance=ExtResource( 5 )]
+
+position = Vector2( 124.99, -329.04 )
+rotation = 0.612431
+
+[node name="bigRock4" parent="Rocks" index="27" instance=ExtResource( 2 )]
+
+position = Vector2( 940.95, -657.252 )
+rotation = 2.86236
+scale = Vector2( 1.2309, 1.2309 )
+
+[node name="bigRock5" parent="Rocks" index="28" instance=ExtResource( 2 )]
+
+position = Vector2( 2507.85, 947.119 )
+rotation = 0.935929
+scale = Vector2( 1.53903, 1.53903 )
+
+[node name="Characters" type="Node2D" parent="." index="2"]
+
+[node name="Crab" parent="Characters" index="0" instance=ExtResource( 7 )]
+
+position = Vector2( 101.485, 261.276 )
+
+[node name="Shrimp" parent="Characters" index="1" instance=ExtResource( 8 )]
+
+position = Vector2( 429.341, 369.282 )
+state = 0
+
+[node name="Shrimp2" parent="Characters" index="2" instance=ExtResource( 8 )]
+
+position = Vector2( 390.08, 420.284 )
+state = 0
+
+[node name="Anemone2" parent="Characters" index="3" instance=ExtResource( 9 )]
+
+position = Vector2( 556.175, 165.783 )
+scale = Vector2( 1.20042, 1.20042 )
+
+[node name="Anemone" parent="Characters" index="4" instance=ExtResource( 9 )]
+
+position = Vector2( 570.288, 222.572 )
+scale = Vector2( 1.37154, 1.37154 )
+
+[node name="Goby" parent="Characters" index="5" instance=ExtResource( 10 )]
+
+position = Vector2( 1264.64, 121.512 )
+
+[node name="Goby2" parent="Characters" index="6" instance=ExtResource( 10 )]
+
+position = Vector2( 1822.34, 264.002 )
+
+[node name="Goby3" parent="Characters" index="7" instance=ExtResource( 10 )]
+
+position = Vector2( 1628.74, 480.487 )
+
+[node name="Anemone4" parent="Characters" index="8" instance=ExtResource( 9 )]
+
+position = Vector2( 1553.32, 205.138 )
+scale = Vector2( 1.41059, 1.41059 )
+
+[node name="Anemone5" parent="Characters" index="9" instance=ExtResource( 9 )]
+
+position = Vector2( 2202.48, 721.684 )
+scale = Vector2( 1.71183, 1.71183 )
+
+[node name="Anemone3" parent="Characters" index="10" instance=ExtResource( 9 )]
+
+position = Vector2( 1574.07, 268.069 )
+scale = Vector2( 1.12717, 1.12717 )
+
+[node name="Goby4" parent="Characters" index="11" instance=ExtResource( 10 )]
+
+position = Vector2( 3012.75, 310.42 )
+
+[node name="Anemone6" parent="Characters" index="12" instance=ExtResource( 9 )]
+
+position = Vector2( 2677.95, 586.1 )
+
+[node name="Anemone7" parent="Characters" index="13" instance=ExtResource( 9 )]
+
+position = Vector2( 2706.66, 518.432 )
+
+[node name="Foreground" type="Node2D" parent="." index="3"]
+
+z_index = 8
+z_as_relative = false
+_sections_unfolded = [ "Z Index" ]
+
+

@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/beanRock.png-33c743fed63e5e28e34e4c3354471d94.stex"
+path="res://.import/smallRock.png-c2b14048ec4fb3b9827c465498b07705.stex"
 
 [deps]
 
-source_file="res://Levels/level_pieces/beanRock.png"
-dest_files=[ "res://.import/beanRock.png-33c743fed63e5e28e34e4c3354471d94.stex" ]
+source_file="res://Levels/level_pieces/rock_images/smallRock.png"
+dest_files=[ "res://.import/smallRock.png-c2b14048ec4fb3b9827c465498b07705.stex" ]
 
 [params]
 

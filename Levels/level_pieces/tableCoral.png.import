@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/L-pieceRock.png-e192fe8f1e7333446046e9936f6dd4f2.stex"
+path="res://.import/tableCoral.png-a0af47d1d2d800234f87daa0a5686b7a.stex"
 
 [deps]
 
-source_file="res://Levels/level_pieces/L-pieceRock.png"
-dest_files=[ "res://.import/L-pieceRock.png-e192fe8f1e7333446046e9936f6dd4f2.stex" ]
+source_file="res://Levels/level_pieces/tableCoral.png"
+dest_files=[ "res://.import/tableCoral.png-a0af47d1d2d800234f87daa0a5686b7a.stex" ]
 
 [params]
 
